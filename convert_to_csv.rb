@@ -13,7 +13,7 @@ else
   puts 'Opened csvquestions.txt'
 end
 
-binding.pry
+# binding.pry
 
 # Retrieve and display paragraphs
 doc.paragraphs.each do |p|
@@ -30,7 +30,8 @@ doc.paragraphs.each do |p|
   end
 end
 
-  binding.pry
-puts doc.paragraphs.first
+  # binding.pry
 
-File.close('resources/csvquestions.txt')
+puts q_file.closed?
+q_file.close
+puts q_file.closed?
