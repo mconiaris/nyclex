@@ -19,13 +19,16 @@ end
 # TODO: Detect line break and use for csv
 # TODO: Use Regex to look for numbers for new row
 doc.paragraphs.each do |p|
-  q_file.puts(p)
+  if p.text != ""
+    q_file.puts(p)
+  end
 end
 
 
 # Retrieve and display paragraphs
 doc.paragraphs.each do |p|
   # doc.paragraphs.first.text
+  # binding.pry
   if p.text.include? "Rationale:"
     puts p
     puts "\n"
