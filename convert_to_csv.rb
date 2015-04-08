@@ -4,6 +4,8 @@ require 'pry'
 # Create a Docx::Document object for our existing docx file
 doc = Docx::Document.open('resources/questions.docx')
 
+i = 0
+
 # Create or open stream to questions.txt document
 if File.exist?('resources/csvquestions.txt') == false
   q_file = File.new('resources/csvquestions.txt', 'w+')
@@ -19,8 +21,17 @@ end
 # TODO: Detect line break and use for csv
 # TODO: Use Regex to look for numbers for new row
 doc.paragraphs.each do |p|
+  i += 1
+
+    binding.pry
   if p.text != ""
-    q_file.puts(p)
+    # Look for paragraphs that being with numbers
+    if p.text.to_i.is_a?(Integer)
+      q_file.print("\n")
+      puts "Numeric #{i}"
+    end
+    # q_file.print(p)
+    q_file.print(p)
   end
 end
 
