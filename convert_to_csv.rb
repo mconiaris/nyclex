@@ -23,12 +23,14 @@ end
 doc.paragraphs.each do |p|
   i += 1
 
-    binding.pry
+  # TODO: Replace newlines with commas
   if p.text != ""
     # Look for paragraphs that being with numbers
-    if p.text.to_i.is_a?(Integer)
+    if p.text.scan(/\d+./)[0] != nil
       q_file.print("\n")
       puts "Numeric #{i}"
+      puts p.text
+    # binding.pry
     end
     # q_file.print(p)
     q_file.print(p)
@@ -36,15 +38,15 @@ doc.paragraphs.each do |p|
 end
 
 
-# Retrieve and display paragraphs
-doc.paragraphs.each do |p|
-  # doc.paragraphs.first.text
-  # binding.pry
-  if p.text.include? "Rationale:"
-    puts p
-    puts "\n"
-  end
-end
+# # Retrieve and display paragraphs
+# doc.paragraphs.each do |p|
+#   # doc.paragraphs.first.text
+#   # binding.pry
+#   if p.text.include? "Rationale:"
+#     puts p
+#     puts "\n"
+#   end
+# end
 
 q_file.puts("Testing")
 
