@@ -26,7 +26,7 @@ doc.paragraphs.each do |p|
   # TODO: Replace newlines with commas
   if p.text != ""
     # Look for paragraphs that being with numbers
-    if p.text.scan(/\d+./)[0] != nil
+    if p.text.scan(/(\d+\.)/)[0] != nil
       q_file.print("\n")
       puts "Numeric #{i}"
       puts p.text
