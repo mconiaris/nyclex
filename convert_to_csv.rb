@@ -30,10 +30,13 @@ doc.paragraphs.each do |p|
       q_file.print("\n")
       puts "Numeric #{i}"
       puts p.text
-    # binding.pry
     end
+
+    # binding.pry
+
     # q_file.print(p)
     q_file.print(p)
+    q_file.print(',')
   end
 end
 
