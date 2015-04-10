@@ -23,7 +23,6 @@ doc.paragraphs.each do |p|
     # Look for paragraphs that being with numbers
     if p.text.scan(/(\d+\.)/)[0] != nil
       q_file.print("\n")
-      puts p.text
     end
 
     # binding.pry
