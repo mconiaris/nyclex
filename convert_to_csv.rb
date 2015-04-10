@@ -14,25 +14,38 @@ else
   puts 'Opened csvquestions.csv'
 end
 
-# binding.pry
+# Create Array for questions
+questions = Array.new
+
 # Retrieve and display paragraphs and add to csvquestions
 # TODO: Use Regex to look for numbers for new row
 doc.paragraphs.each do |p|
-  # TODO: Replace newlines with commas
+#   # TODO: Replace newlines with commas
+#   if p.text != ""
+#     # Create Hash for each question
+#     # Look for paragraphs that being with numbers
+#     if p.text.scan(/(\d+\.)/)[0] != nil
+#       question_hash = Hash.new
+#       question_hash = { question: p.text }
+#       # q_file.print("\n")
+#     binding.pry
+#     else
+#       question_hash = { misc: p.text }
+#     end
+
+
+#     # q_file.print(p)
+#     q_file.print(p)
+#     # q_file.print(',')
+#   end
+
+  # Take Document Text and Insert it into an Array
   if p.text != ""
-    # Look for paragraphs that being with numbers
-    if p.text.scan(/(\d+\.)/)[0] != nil
-      q_file.print("\n")
-    end
-
-    # binding.pry
-
-    # q_file.print(p)
-    q_file.print(p)
-    q_file.print(',')
+    questions.push(p.text)
   end
 end
 
+binding.pry
 
 # # Retrieve and display paragraphs
 # doc.paragraphs.each do |p|
