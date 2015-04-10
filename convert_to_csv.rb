@@ -18,7 +18,6 @@ end
 # binding.pry
 
 # Retrieve and display paragraphs and add to csvquestions
-# TODO: Detect line break and use for csv
 # TODO: Use Regex to look for numbers for new row
 doc.paragraphs.each do |p|
   i += 1
