@@ -7,12 +7,12 @@ doc = Docx::Document.open('resources/questions.docx')
 i = 0
 
 # Create or open stream to questions.txt document
-if File.exist?('resources/csvquestions.txt') == false
-  q_file = File.new('resources/csvquestions.txt', 'w+')
-  puts 'Created csvquestions.txt'
+if File.exist?('resources/csvquestions.csv') == false
+  q_file = File.new('resources/csvquestions.csv', 'w+')
+  puts 'Created csvquestions.csv'
 else
-  q_file = File.open('resources/csvquestions.txt', 'w+')
-  puts 'Opened csvquestions.txt'
+  q_file = File.open('resources/csvquestions.csv', 'w+')
+  puts 'Opened csvquestions.csv'
 end
 
 # binding.pry
