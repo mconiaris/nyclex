@@ -1,6 +1,12 @@
 require 'docx'
 require 'pry'
 
+# Create Array of Document Lines
+text_line_array = Array.new
+
+# Create Array of Questions
+questions_array = Array.new
+
 # Create a Docx::Document object for our existing docx file
 doc = Docx::Document.open('resources/questions.docx')
 
@@ -14,8 +20,6 @@ else
   puts 'Opened csvquestions.csv'
 end
 
-# Create Array for questions
-questions = Array.new
 
 # Retrieve and display paragraphs and add to csvquestions
 # TODO: Use Regex to look for numbers for new row
@@ -41,11 +45,32 @@ doc.paragraphs.each do |p|
 
   # Take Document Text and Insert it into an Array
   if p.text != ""
-    questions.push(p.text)
+    text_line_array.push(p.text)
   end
 end
 
-binding.pry
+  i = 0
+# binding.pry
+  while i < text_line_array.size do
+    question = {
+      category:   text_line_array[0],
+      question:   text_line_array[i+1],
+      choice_A:   text_line_array[i+2],
+      choice_B:   text_line_array[i+3],
+      choice_C:   text_line_array[i+4],
+      choice_D:   text_line_array[i+5],
+      answer:     text_line_array[i+6],
+      iggy:       text_line_array[i+7],
+      rationale:  text_line_array[i+8],
+      subject:    text_line_array[i+9]
+    }
+
+    questions_array.push(question)
+    puts text_line_array[i]
+    i += 9
+  end
+
+    binding.pry
 
 # # Retrieve and display paragraphs
 # doc.paragraphs.each do |p|
