@@ -11,43 +11,59 @@ questions_array = Array.new
 doc = Docx::Document.open('resources/questions.docx')
 
 
-# Create or open stream to csvquestions.csv document
-if File.exist?('resources/csvquestions.csv') == false
-  q_file = File.new('resources/csvquestions.csv', 'w+')
-  puts 'Created csvquestions.csv'
-else
-  q_file = File.open('resources/csvquestions.csv', 'w+')
-  puts 'Opened csvquestions.csv'
-end
-
-# Create or open stream to questions_text.txt document
-if File.exist?('resources/questions_text.txt') == false
-  qt_file = File.new('resources/questions_text.txt', 'w+')
-  puts 'Created questions_text.txt'
-else
-  qt_file = File.open('resources/questions_text.txt', 'w+')
-  puts 'Opened questions_text.txt'
-end
-
-# Retrieve and display paragraphs and add to csvquestions
-# TODO: Use Regex to look for numbers for new row
-doc.paragraphs.each do |p|
-  # Merge paragraphs into questions_text.txt document
-  if p.text != "" && p.text.scan(/(\d+\.)/)[0] != nil
-    qt_file.print("\n")
-    qt_file.print(p.text)
-    qt_file.print("\t")
-  elsif p.text != ""
-    qt_file.print(p.text)
+def process_word_document
+  # Create or open stream to csvquestions.csv document
+  if File.exist?('resources/csvquestions.csv') == false
+    q_file = File.new('resources/csvquestions.csv', 'w+')
+    puts 'Created csvquestions.csv'
+  else
+    q_file = File.open('resources/csvquestions.csv', 'w+')
+    puts 'Opened csvquestions.csv'
   end
+
+  # Create or open stream to questions_text.txt document
+  if File.exist?('resources/questions_text.txt') == false
+    qt_file = File.new('resources/questions_text.txt', 'w+')
+    puts 'Created questions_text.txt'
+  else
+    qt_file = File.open('resources/questions_text.txt', 'w+')
+    puts 'Opened questions_text.txt'
+  end
+
+  # Retrieve and display paragraphs and add to csvquestions
+  # TODO: Use Regex to look for numbers for new row
+  doc.paragraphs.each do |p|
+    # Merge paragraphs into questions_text.txt document
+    if p.text != "" && p.text.scan(/(\d+\.)/)[0] != nil
+      qt_file.print("\n")
+      qt_file.print(p.text)
+      qt_file.print("\t")
+    elsif p.text != ""
+      qt_file.print(p.text)
+    end
+  end
+  puts qt_file.size
+  q_file.puts("Testing")
+
+    # binding.pry
+
+  puts q_file.closed?
+  q_file.close
+  puts q_file.closed?
+
+  puts qt_file.closed?
+  qt_file.close
+  puts qt_file.closed?
 end
 
-puts qt_file.size
 
-while(line = qt_file.gets)
-  puts "testing"
-  puts(line)
-end
+
+
+
+# while(line = qt_file.gets)
+#   puts "testing"
+#   puts(line)
+# end
 
 
 #   i = 0
@@ -82,17 +98,6 @@ end
 #   end
 # end
 
-q_file.puts("Testing")
-
-  # binding.pry
-
-puts q_file.closed?
-q_file.close
-puts q_file.closed?
-
-puts qt_file.closed?
-qt_file.close
-puts qt_file.closed?
 
 # REGEX:
 # (\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)(.[A-F]|[A-F])(Iggy:|.Iggy|Iggy)(.+)(Rationale:)(.+)(Health.+|Physiological.+)
