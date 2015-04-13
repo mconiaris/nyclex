@@ -7,11 +7,12 @@ text_line_array = Array.new
 # Create Array of Questions
 questions_array = Array.new
 
-# Create a Docx::Document object for our existing docx file
-doc = Docx::Document.open('resources/questions.docx')
 
 
 def process_word_document
+  # Create a Docx::Document object for our existing docx file
+  doc = Docx::Document.open('resources/questions.docx')
+
   # Create or open stream to csvquestions.csv document
   if File.exist?('resources/csvquestions.csv') == false
     q_file = File.new('resources/csvquestions.csv', 'w+')
@@ -101,3 +102,5 @@ end
 
 # REGEX:
 # (\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)(.[A-F]|[A-F])(Iggy:|.Iggy|Iggy)(.+)(Rationale:)(.+)(Health.+|Physiological.+)
+
+process_word_document
