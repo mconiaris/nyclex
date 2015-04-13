@@ -60,6 +60,7 @@ end
 def process_text_file
   text_file = File.open('resources/questions_text.txt')
   text_file_text = text_file.read
+  text = text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)(.[A-F]|[A-F])(Iggy:|.Iggy|Iggy)(.+)(Rationale:)(.+)(Health.+|Physiological.+)/)
   binding.pry
   puts "inside process text file"
   text_file.close
