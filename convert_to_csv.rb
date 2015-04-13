@@ -57,7 +57,13 @@ def process_word_document
   puts qt_file.closed?
 end
 
-
+def process_text_file
+  text_file = File.open('resources/questions_text.txt')
+  text_file_text = File.read
+  binding.pry
+  puts "inside process text file"
+  text_file.close
+end
 
 
 
@@ -104,3 +110,4 @@ end
 # (\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)(.[A-F]|[A-F])(Iggy:|.Iggy|Iggy)(.+)(Rationale:)(.+)(Health.+|Physiological.+)
 
 process_word_document
+process_text_file
