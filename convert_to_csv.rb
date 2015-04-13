@@ -59,7 +59,7 @@ end
 
 def process_text_file
   text_file = File.open('resources/questions_text.txt')
-  text_file_text = File.read
+  text_file_text = text_file.read
   binding.pry
   puts "inside process text file"
   text_file.close
