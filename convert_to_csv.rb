@@ -43,7 +43,8 @@ def process_word_document
     elsif p.text == "Health Promotion and Maintenance, Application, Assessment" ||
       p.text == "Physiological Adaptation, Application, Assessment" ||
       p.text == "CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)" ||
-      p.text == "Pharmacology, Application, Evaluation (Teaching)"
+      p.text == "Pharmacology, Application, Evaluation (Teaching)" ||
+      p.text == "Reduction of Risk, Application, Assessment"
         qt_file.puts(p.text)
      elsif p.text == "GASTROINTESTINAL SYSTEM"
         qt_file.print("\n")
