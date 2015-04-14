@@ -39,7 +39,7 @@ def process_word_document
       qt_file.print("\n")
       qt_file.print(p.text)
       qt_file.print("\t")
-      binding.pry
+      # binding.pry
     elsif p.text != ""
       qt_file.print(p.text)
     end
