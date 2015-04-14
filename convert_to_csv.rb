@@ -40,10 +40,10 @@ def process_word_document
       qt_file.print(p.text)
       qt_file.print("\t")
       # binding.pry
-    elsif p.text.includes?("CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)")
+    elsif p.text.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)")
       qt_file.print(p.text)
       qt_file.print("\n")
-    elsif p.text.includes?("GASTROINTESTINAL SYSTEM")
+    elsif p.text.include?("GASTROINTESTINAL SYSTEM")
       qt_file.print(p.text)
       qt_file.print("\n")
     elsif p.text != ""
