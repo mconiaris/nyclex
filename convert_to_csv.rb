@@ -44,6 +44,7 @@ def process_word_document
       qt_file.print(p.text)
       qt_file.print("\n")
     elsif p.text.include?("GASTROINTESTINAL SYSTEM")
+      qt_file.print("\n")
       qt_file.print(p.text)
       qt_file.print("\n")
     elsif p.text != ""
