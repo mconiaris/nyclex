@@ -35,10 +35,11 @@ def process_word_document
   # TODO: Use Regex to look for numbers for new row
   doc.paragraphs.each do |p|
     # Merge paragraphs into questions_text.txt document
-    if p.text != "" && p.text.scan(/(\d+\.)/)[0] != nil
+    if p.text != "" && p.text[0...3].scan(/(\d+\.)/)[0] != nil
       qt_file.print("\n")
       qt_file.print(p.text)
       qt_file.print("\t")
+      binding.pry
     elsif p.text != ""
       qt_file.print(p.text)
     end
