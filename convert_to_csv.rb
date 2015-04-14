@@ -35,18 +35,15 @@ def process_word_document
   # TODO: Use Regex to look for numbers for new row
   doc.paragraphs.each do |p|
     # Merge paragraphs into questions_text.txt document
-    if p.text != "" && p.text[0...5].scan(/(\d+\.)/)[0] != nil
-      qt_file.print("\n")
-      qt_file.print(p.text)
-      qt_file.print("\t")
-      # binding.pry
-    elsif p.text.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)")
-      qt_file.print(p.text)
-      qt_file.print("\n")
-    elsif p.text.include?("GASTROINTESTINAL SYSTEM")
-      qt_file.print("\n")
-      qt_file.print(p.text)
-      qt_file.print("\n")
+    if p.text != "" && p.text[0...5].scan(/(\d+\.)/)[0] != nil ||
+      p.text.include?("Health Promotion and Maintenance, Application, Assessment") ||
+      p.text.include?("Physiological Adaptation, Application, Assessment") ||
+      p.text.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)") ||
+      p.text.include?("GASTROINTESTINAL SYSTEM")
+        qt_file.print("\n")
+        qt_file.print(p.text)
+        qt_file.print("\t")
+        # binding.pry
     elsif p.text != ""
       qt_file.print(p.text)
     end
