@@ -45,6 +45,7 @@ def process_word_document
       p.text == "CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)" ||
       p.text == "Pharmacology, Application, Evaluation (Teaching)" ||
       p.text == "Reduction of Risk, Application, Assessment" ||
+      p.text == "Physiological Adaptation, Application, Intervention" ||
       p.text == "Physiological Adaptation, Application, Intervention"
         qt_file.puts(p.text)
      elsif p.text == "GASTROINTESTINAL SYSTEM"
