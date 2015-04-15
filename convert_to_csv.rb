@@ -4,8 +4,6 @@ require 'pry'
 # Create Array of Document Lines
 text_line_array = Array.new
 
-# Create Array of Questions
-questions_array = Array.new
 
 
 
@@ -72,17 +70,22 @@ def process_word_document
 end
 
 def process_text_file
+  # Create Array of Questions
+  questions_array = Array.new
+
   text_file = File.open('resources/questions_text.txt')
   text_file.readlines.each do |paragraph|
     if paragraph[0...5].scan(/(\d+\.)/)[0] != nil
       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
-    binding.pry
+      questions_array.push(parsed_paragraph)
       puts "There is a number here"
     else
+      questions_array.push(paragraph)
       puts "There is no number here"
     end
     puts paragraph
   end
+    binding.pry
   text_file_text = text_file.read
 
   # Look for paragraphs that fit into working REGEX
