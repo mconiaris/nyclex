@@ -12,12 +12,12 @@ class Question
     @choice_b         = args[:choice_b]
     @choice_c         = args[:choice_c]
     @choice_d         = args[:choice_d]
-    @choice_e         = args[:choice_e] ||= nil
-    @choice_f         = args[:choice_f] ||= nil
-    @correct_answer   = args[:correct_answer]
-    @iggy             = args[:iggy] ||= nil
-    @rationale        = args{:rationale}
-    @subject          = args[:subject]
+    # @choice_e         = args[:choice_e] ||= nil
+    # @choice_f         = args[:choice_f] ||= nil
+    # @correct_answer   = args[:correct_answer]
+    # @iggy             = args[:iggy] ||= nil
+    # @rationale        = args{:rationale}
+    # @subject          = args[:subject]
   end
 
 end

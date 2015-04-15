@@ -1,3 +1,4 @@
+require_relative 'question'
 require 'docx'
 require 'pry'
 
@@ -77,7 +78,16 @@ def process_text_file
   text_file.readlines.each do |paragraph|
     if paragraph[0...5].scan(/(\d+\.)/)[0] != nil
       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
-      questions_array.push(parsed_paragraph)
+
+      question_object = Question.new(
+        question_number:  parsed_paragraph[0][0],
+        question_text:    parsed_paragraph[0][1],
+        choice_a:         parsed_paragraph[0][3],
+        choice_b:         parsed_paragraph[0][5],
+        choice_c:         parsed_paragraph[0][7],
+        choice_d:         parsed_paragraph[0][9],
+        )
+      questions_array.push(question_object)
       puts "There is a number here"
     else
       questions_array.push(paragraph)
