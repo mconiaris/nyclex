@@ -13,7 +13,7 @@ def process_word_document
   # Create a Docx::Document object for our existing docx file
   doc = Docx::Document.open('resources/questions.docx')
 
-  binding.pry
+  # binding.pry
 
   # Create or open stream to csvquestions.csv document
   if File.exist?('resources/csvquestions.csv') == false
