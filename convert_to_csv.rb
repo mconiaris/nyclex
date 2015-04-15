@@ -74,8 +74,13 @@ end
 def process_text_file
   text_file = File.open('resources/questions_text.txt')
   text_file.readlines.each do |paragraph|
+    if paragraph[0...5].scan(/(\d+\.)/)[0] != nil
+      puts "There is a number here"
+    else
+      puts "There is no number here"
+    end
     puts paragraph
-    # binding.pry
+    binding.pry
   end
   text_file_text = text_file.read
 
