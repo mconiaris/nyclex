@@ -89,13 +89,13 @@ def process_text_file
         )
       questions_array.push(question_object)
       puts "There is a number here"
-    else
+    # binding.pry
+    elsif paragraph != "\n"
       questions_array.push(paragraph)
       puts "There is no number here"
     end
     puts paragraph
   end
-    binding.pry
   text_file_text = text_file.read
 
   # Look for paragraphs that fit into working REGEX
