@@ -17,7 +17,7 @@ class Question
     # @correct_answer   = args[:correct_answer]
     # @iggy             = args[:iggy] ||= nil
     # @rationale        = args{:rationale}
-    # @subject          = args[:subject]
+    @subject          = args[:subject]
   end
 
 end

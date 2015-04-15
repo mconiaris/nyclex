@@ -73,10 +73,14 @@ end
 def process_text_file
   # Create Array of Questions
   questions_array = Array.new
+  subject = ""
 
   text_file = File.open('resources/questions_text.txt')
   text_file.readlines.each do |paragraph|
-    if paragraph[0...5].scan(/(\d+\.)/)[0] != nil
+    if paragraph.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM")
+      subject = paragraph.chomp.capitalize
+
+    elsif paragraph[0...5].scan(/(\d+\.)/)[0] != nil
       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
 
       question_object = Question.new(
@@ -86,16 +90,17 @@ def process_text_file
         choice_b:         parsed_paragraph[0][5],
         choice_c:         parsed_paragraph[0][7],
         choice_d:         parsed_paragraph[0][9],
+        subject:          subject
         )
       questions_array.push(question_object)
       puts "There is a number here"
-    # binding.pry
     elsif paragraph != "\n"
       questions_array.push(paragraph)
       puts "There is no number here"
     end
     puts paragraph
   end
+    binding.pry
   text_file_text = text_file.read
 
   # Look for paragraphs that fit into working REGEX
