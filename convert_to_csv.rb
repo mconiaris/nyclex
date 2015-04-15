@@ -13,6 +13,8 @@ def process_word_document
   # Create a Docx::Document object for our existing docx file
   doc = Docx::Document.open('resources/questions.docx')
 
+  binding.pry
+
   # Create or open stream to csvquestions.csv document
   if File.exist?('resources/csvquestions.csv') == false
     q_file = File.new('resources/csvquestions.csv', 'w+')
@@ -39,7 +41,6 @@ def process_word_document
       qt_file.print("\n")
       qt_file.print(p.text)
       qt_file.print("\t")
-        # binding.pry
     elsif p.text == "Health Promotion and Maintenance, Application, Assessment" ||
       p.text == "Physiological Adaptation, Application, Assessment" ||
       p.text == "CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)" ||
