@@ -73,7 +73,19 @@ end
 
 def process_text_file
   text_file = File.open('resources/questions_text.txt')
+  text_file.readlines.each do |paragraph|
+    puts paragraph
+    # binding.pry
+  end
   text_file_text = text_file.read
+
+  # Look for paragraphs that fit into working REGEX
+  if text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+    text = text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+    puts "if statement triggered"
+  end
+
+
   text = text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)(.[A-F]|[A-F])(Iggy:|.Iggy|Iggy)(.+)(Rationale:)(.+)(Health.+|Physiological.+)/)
   # binding.pry
   puts "inside process text file"
