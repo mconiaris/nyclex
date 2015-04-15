@@ -83,6 +83,11 @@ def process_text_file
       category = paragraph.chomp.capitalize
     elsif paragraph[0...5].scan(/(\d+\.)/)[0] != nil
       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+      correct_answer_scan = paragraph.scan(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)
+      # TODO: Fix nil response for question 30
+      correct_answer_text = correct_answer_scan[0][1] ||= ""
+
+
 
       question_object = Question.new(
         question_number:  parsed_paragraph[0][0],
@@ -91,6 +96,7 @@ def process_text_file
         choice_b:         parsed_paragraph[0][5],
         choice_c:         parsed_paragraph[0][7],
         choice_d:         parsed_paragraph[0][9],
+        correct_answer:   correct_answer_text,
         category:         category
         )
       questions_array.push(question_object)
