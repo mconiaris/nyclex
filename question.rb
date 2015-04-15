@@ -3,7 +3,7 @@ class Question
   attr_accessor :question_number, :question_text,
     :choice_a, :choice_b, :choice_c, :choice_d,
     :choice_e, :choice_f, :correct_answer, :iggy,
-    :rationale, :subject
+    :rationale, :subject, :category
 
   def initialize(args)
     @question_number  = args[:question_number] ||= nil
@@ -17,7 +17,8 @@ class Question
     # @correct_answer   = args[:correct_answer]
     # @iggy             = args[:iggy] ||= nil
     # @rationale        = args{:rationale}
-    @subject          = args[:subject]
+    # @subject          = args[:subject]
+    @category         = args[:category]
   end
 
 end
