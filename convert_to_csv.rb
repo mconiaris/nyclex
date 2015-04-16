@@ -88,10 +88,12 @@ def process_text_file
       correct_answer_scan = paragraph.scan(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)
       correct_answer_text = correct_answer_scan[0][1]
 
-      iggy_text_scan = paragraph.scan(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)
-
       # Had to add "pg 0" to Iggy on Question 13
+      iggy_text_scan = paragraph.scan(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)
       iggy_text = iggy_text_scan[0][1]
+
+      rationale_scan = paragraph.scan(/(Rationale:)\s(.+)(Reduction|Health|Physiological|Basic|Pharmacology|Risk|Safe)/)
+      rationale_text = rationale_scan[0][1]
 
 # Iggy: (Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)
 
@@ -104,6 +106,7 @@ def process_text_file
         choice_d:         parsed_paragraph[0][9],
         correct_answer:   correct_answer_text,
         iggy:             iggy_text,
+        rationale:        rationale_text,
         category:         category
         )
       questions_array.push(question_object)
