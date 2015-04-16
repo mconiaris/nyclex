@@ -32,56 +32,65 @@ def process_word_document
     puts 'Opened questions_text.txt'
   end
 
-  # Retrieve and display paragraphs and add to csvquestions
-  # TODO: Use Regex to look for numbers for new row
+  # Retrieve and display paragraphs and add to questions_text.txt
   doc.paragraphs.each do |p|
     # Merge paragraphs into questions_text.txt document
+    # Each newline contains a question and related text
+    # Search for question numbers in first six characters
     if p.text != "" && p.text[0...5].scan(/(\d+\.)/)[0] != nil
       qt_file.print("\n")
       qt_file.print(p.text)
       qt_file.print(" ")
+    # Add line break after subjects to capture questions
+    # that do not have line numbers
     elsif p.text == "Health Promotion and Maintenance, Application, Assessment" ||
       p.text == "Physiological Adaptation, Application, Assessment" ||
       p.text == "CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)" ||
       p.text == "Pharmacology, Application, Evaluation (Teaching)" ||
       p.text == "Reduction of Risk, Application, Assessment" ||
-      # p.text == "Physiological Adaptation, Application, Intervention" ||
       p.text == "Pharmacology, Application, Planning" ||
       p.text.include?("Physiological Adaptation, Application, Intervention")
         qt_file.puts(p.text)
+      # Add line break for this category
      elsif p.text == "GASTROINTESTINAL SYSTEM"
         qt_file.print("\n")
         qt_file.puts(p.text)
+    # Print questions without questions numbers to document
     elsif p.text != ""
+      binding.pry
       qt_file.print(p.text)
       qt_file.print(" ")
     end
   end
-  puts qt_file.size
+  # Add test text to ensure that file can be written to
   q_file.puts("Testing")
 
-    # binding.pry
-
-  puts q_file.closed?
+  # Close documents
   q_file.close
-  puts q_file.closed?
-
-  puts qt_file.closed?
   qt_file.close
-  puts qt_file.closed?
 end
 
+# Take text from questions_text.txt and create Ruby objects
 def process_text_file
   # Create Array of Questions
   questions_array = Array.new
+
+  # To be overwritten with REGEX scans
   category = ""
 
+  # Open questions_text document
   text_file = File.open('resources/questions_text.txt')
+
+  # Read each line of the document to create Ruby objects
   text_file.readlines.each do |paragraph|
+    # Look for text to change category variable
     if paragraph.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM")
       category = paragraph.chomp.capitalize
     elsif paragraph.include?("GASTROINTESTINAL SYSTEM")
       category = paragraph.chomp.capitalize
+
+    # Look for text with question numbers on it
+    # and capture relevant info using REGEX
     elsif paragraph[0...5].scan(/(\d+\.)/)[0] != nil
       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
 
