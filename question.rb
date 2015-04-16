@@ -19,7 +19,7 @@ class Question
     @correct_answer   = args[:correct_answer]
     @iggy             = args[:iggy]
     @rationale        = args[:rationale]
-    # @subject          = args[:subject]
+    @subject          = args[:subject]
     @category         = args[:category]
   end
 

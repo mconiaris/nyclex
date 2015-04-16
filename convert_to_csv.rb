@@ -95,6 +95,9 @@ def process_text_file
       rationale_scan = paragraph.scan(/(Rationale:)\s(.+)(Reduction|Health|Physiological|Basic|Pharmacology|Risk|Safe)/)
       rationale_text = rationale_scan[0][1]
 
+      subject_scan = paragraph.scan(/(Reduction.+|Health.+|Physiological.+|Basic.+|Pharmacology.+|Risk.+|Safe.+)/)
+      subject_text = subject_scan[0][0]
+
 # Iggy: (Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)
 
       question_object = Question.new(
@@ -107,6 +110,7 @@ def process_text_file
         correct_answer:   correct_answer_text,
         iggy:             iggy_text,
         rationale:        rationale_text,
+        subject:          subject_text,
         category:         category
         )
       questions_array.push(question_object)
