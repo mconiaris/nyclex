@@ -85,7 +85,7 @@ def process_text_file
       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
       correct_answer_scan = paragraph.scan(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)
       # TODO: Fix nil response for question 30
-      correct_answer_text = correct_answer_scan[0][1] ||= ""
+      correct_answer_text = correct_answer_scan[0][1] ||= "n/a"
 
 
 
