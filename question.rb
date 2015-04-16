@@ -17,7 +17,7 @@ class Question
     @choice_e         = args[:choice_e] ||= ""
     @choice_f         = args[:choice_f] ||= ""
     @correct_answer   = args[:correct_answer]
-    # @iggy             = args[:iggy] ||= nil
+    @iggy             = args[:iggy]
     # @rationale        = args{:rationale}
     # @subject          = args[:subject]
     @category         = args[:category]

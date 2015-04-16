@@ -39,7 +39,7 @@ def process_word_document
     if p.text != "" && p.text[0...5].scan(/(\d+\.)/)[0] != nil
       qt_file.print("\n")
       qt_file.print(p.text)
-      qt_file.print("\t")
+      qt_file.print(" ")
     elsif p.text == "Health Promotion and Maintenance, Application, Assessment" ||
       p.text == "Physiological Adaptation, Application, Assessment" ||
       p.text == "CARDIOVASCULAR/CIRCULATORY SYSTEM (INCLUDING OPERATIVE)" ||
@@ -54,6 +54,7 @@ def process_word_document
         qt_file.puts(p.text)
     elsif p.text != ""
       qt_file.print(p.text)
+      qt_file.print(" ")
     end
   end
   puts qt_file.size
@@ -83,11 +84,16 @@ def process_text_file
       category = paragraph.chomp.capitalize
     elsif paragraph[0...5].scan(/(\d+\.)/)[0] != nil
       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+
       correct_answer_scan = paragraph.scan(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)
-      # TODO: Fix nil response for question 30
-      correct_answer_text = correct_answer_scan[0][1] ||= "n/a"
+      correct_answer_text = correct_answer_scan[0][1]
 
+      iggy_text_scan = paragraph.scan(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)
 
+      # Had to add "pg 0" to Iggy on Question 13
+      iggy_text = iggy_text_scan[0][1]
+
+# Iggy: (Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)
 
       question_object = Question.new(
         question_number:  parsed_paragraph[0][0],
@@ -97,10 +103,10 @@ def process_text_file
         choice_c:         parsed_paragraph[0][7],
         choice_d:         parsed_paragraph[0][9],
         correct_answer:   correct_answer_text,
+        iggy:             iggy_text,
         category:         category
         )
       questions_array.push(question_object)
-      puts "There is a number here"
     elsif paragraph != "\n"
       questions_array.push(paragraph)
       puts "There is no number here"
