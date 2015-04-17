@@ -7,10 +7,6 @@ def word_doc_to_array
 
   # Create Array of Document Lines
   doc_line_array = Array.new
-# question_number, :question_text,
-#     :choice_a, :choice_b, :choice_c, :choice_d,
-#     :choice_e, :choice_f, :correct_answer, :iggy,
-#     :rationale, :subject, :category
 
   # Create a Docx::Document object for our existing docx file
   doc = Docx::Document.open('resources/questions.docx')
@@ -25,7 +21,18 @@ def word_doc_to_array
   return doc_line_array
 end
 
-word_doc_to_array
-puts word_doc_to_array.size
+
+def text_to_ruby_objects(array)
+
+  questions_array = array
+# question_number, :question_text,
+#     :choice_a, :choice_b, :choice_c, :choice_d,
+#     :choice_e, :choice_f, :correct_answer, :iggy,
+#     :rationale, :subject, :category
+  puts questions_array.size
+
+end
+
+text_to_ruby_objects(word_doc_to_array)
 # binding.pry
 puts "hi"
