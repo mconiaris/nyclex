@@ -113,7 +113,11 @@ def turn_text_into_objects(array)
       category = cell.chomp.capitalize
     elsif cell == "GASTROINTESTINAL SYSTEM"
       category = paragraph.chomp.capitalize
+    else
+      question_detail_array = cell.split("QBREAK")
     end
+
+
 
     binding.pry
 
