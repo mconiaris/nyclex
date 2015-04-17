@@ -110,7 +110,7 @@ def turn_text_into_objects(array)
 
     # Look for text to change category variable
     if cell == "CARDIOVASCULAR/CIRCULATORY SYSTEM"
-      category = cell.capitalize
+      category = cell.chomp.capitalize
     elsif cell == "GASTROINTESTINAL SYSTEM"
       category = paragraph.chomp.capitalize
     end
