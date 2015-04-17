@@ -121,20 +121,19 @@ def turn_text_into_objects(array)
 
     binding.pry
 
-    # question_object = Question.new(
-    #   question_number:  parsed_paragraph[0][0],
-    #   question_text:    parsed_paragraph[0][1],
-    #   choice_a:         parsed_paragraph[0][3],
-    #   choice_b:         parsed_paragraph[0][5],
-    #   choice_c:         parsed_paragraph[0][7],
-    #   choice_d:         parsed_paragraph[0][9],
-    #   correct_answer:   correct_answer_text,
-    #   iggy:             iggy_text,
-    #   rationale:        rationale_text,
-    #   subject:          subject_text,
-    #   category:         category
-    #   )
-    # questions_array.push(question_object)
+    question_object = Question.new(
+      question_text:    question_detail_array[0],
+      choice_a:         question_detail_array[1],
+      choice_b:         question_detail_array[2],
+      choice_c:         question_detail_array[3],
+      choice_d:         question_detail_array[4],
+      # correct_answer:   correct_answer_text,
+      # iggy:             iggy_text,
+      # rationale:        rationale_text,
+      # subject:          subject_text,
+      category:         category
+      )
+    questions_array.push(question_object)
 
   end
 end

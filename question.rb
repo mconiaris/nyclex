@@ -1,6 +1,6 @@
 class Question
 
-  attr_accessor :question_number, :question_text,
+  attr_accessor :question_text,
     :choice_a, :choice_b, :choice_c, :choice_d,
     :choice_e, :choice_f, :correct_answer, :iggy,
     :rationale, :subject, :category
@@ -8,7 +8,6 @@ class Question
     # Had to add a space in question number 38 next to ANS
 
   def initialize(args)
-    @question_number  = args[:question_number] ||= ""
     @question_text    = args[:question_text]
     @choice_a         = args[:choice_a]
     @choice_b         = args[:choice_b]
