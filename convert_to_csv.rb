@@ -5,7 +5,6 @@ require 'pry'
 # Create Array of Document Lines
 text_line_array = Array.new
 
-
 def process_word_document
   # Create a Docx::Document object for our existing docx file
   doc = Docx::Document.open('resources/questions.docx')
