@@ -86,8 +86,6 @@ def process_text_file
   # Create Array of Questions
   questions_array = Array.new
 
-  # To be overwritten with REGEX scans
-  category = ""
 
   # Open questions_text document
   text_file = File.open('resources/questions_text.txt')
@@ -105,10 +103,23 @@ def turn_text_into_objects(array)
   question_text_array = array
   question_objects_array = Array.new
 
-  category = ""
+  category          = ""
 
   question_text_array.each do |cell|
 
+    # To be overwritten with REGEX scans
+    choice_e          = ""
+    choice_f          = ""
+    choice_g          = ""
+    correct_answer    = ""
+    iggy              = ""
+    rationale         = ""
+    subject           = ""
+
+
+    # TODO: Fix question #29 answers E-G (not showing
+      # in text document. Enter it in manually?)
+    # TODO: Fix categories.
     # Look for text to change category variable
     if cell == "CARDIOVASCULAR/CIRCULATORY SYSTEM"
       category = cell.chomp.capitalize
@@ -117,26 +128,54 @@ def turn_text_into_objects(array)
     else
       question_detail_array = cell.split("QBREAK")
 
+      question_detail_array.each do |detail|
 
+        case detail
+        when /([E]\.)(.+)/
+          choice_e = detail
+        when /([F]\.)(.+)/
+          choice_f = detail
+        when /([G]\.)(.+)/
+          choice_g = detail
+        when /(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/
+          correct_answer = detail
+        when /(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/
+          iggy = detail
+        when /(Rationale:)\s(.+)/
+          rationale = detail
+        else
+          subject = detail
+        end
+      end
 
-    binding.pry
-
-    question_object = Question.new(
-      question_text:    question_detail_array[0],
-      choice_a:         question_detail_array[1],
-      choice_b:         question_detail_array[2],
-      choice_c:         question_detail_array[3],
-      choice_d:         question_detail_array[4],
-      # correct_answer:   correct_answer_text,
-      # iggy:             iggy_text,
-      # rationale:        rationale_text,
-      # subject:          subject_text,
-      category:         category
-      )
-    question_objects_array.push(question_object)
+      question_object = Question.new(
+        question_text:    question_detail_array[0],
+        choice_a:         question_detail_array[1],
+        choice_b:         question_detail_array[2],
+        choice_c:         question_detail_array[3],
+        choice_d:         question_detail_array[4],
+        choice_e:         choice_e,
+        choice_f:         choice_f,
+        choice_g:         choice_g,
+        correct_answer:   correct_answer,
+        iggy:             iggy,
+        rationale:        rationale,
+        subject:          subject,
+        category:         category
+        )
+      question_objects_array.push(question_object)
     end
 
+    # choice_e = ""
+    # choice_f = ""
+    # choice_g = ""
+    # correct_answer = ""
+    # iggy = ""
+    # rationale = ""
+    # subject = ""
+
   end
+    binding.pry
 end
 
 
