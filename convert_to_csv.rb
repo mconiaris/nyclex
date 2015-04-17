@@ -103,6 +103,7 @@ end
 def turn_text_into_objects(array)
 
   question_text_array = array
+  question_objects_array = Array.new
 
   category = ""
 
@@ -132,7 +133,7 @@ def turn_text_into_objects(array)
       # subject:          subject_text,
       category:         category
       )
-    questions_array.push(question_object)
+    question_objects_array.push(question_object)
     end
 
   end
