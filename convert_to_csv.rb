@@ -115,7 +115,6 @@ def turn_text_into_objects(array)
       category = paragraph.chomp.capitalize
     else
       question_detail_array = cell.split("QBREAK")
-    end
 
 
 
@@ -134,6 +133,7 @@ def turn_text_into_objects(array)
       category:         category
       )
     questions_array.push(question_object)
+    end
 
   end
 end
