@@ -32,8 +32,6 @@ def process_word_document
     puts 'Opened questions_text.txt'
   end
 
-  qt_file.print("QUESTION")
-
   # Retrieve and display paragraphs and add to questions_text.txt
   doc.paragraphs.each do |p|
     # Merge paragraphs into questions_text.txt document
@@ -67,12 +65,11 @@ def process_word_document
       p.to_s.include?("Physiological integrity, Application, Implementation")
 
     qt_file.puts(p.text)
-    qt_file.print("QUESTION")
     # Print questions without questions numbers to document
     elsif p.text != ""
       # binding.pry
       qt_file.print(p.text)
-      qt_file.print("QBREAK")
+      qt_file.print("QBREAK ")
     end
   end
   # Add test text to ensure that file can be written to
@@ -83,6 +80,7 @@ def process_word_document
   qt_file.close
 end
 
+  # binding.pry
 # Take text from questions_text.txt and create Ruby objects
 def process_text_file
   # Create Array of Questions
@@ -96,70 +94,95 @@ def process_text_file
 
   # Read each line of the document to create Ruby objects
   text_file.readlines.each do |paragraph|
-    # Look for text to change category variable
-    if paragraph.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM")
-      category = paragraph.chomp.capitalize
-    elsif paragraph.include?("GASTROINTESTINAL SYSTEM")
-      category = paragraph.chomp.capitalize
 
-    # Look for text with question numbers on it
-    # and capture relevant info using REGEX
-    elsif paragraph[0...5].scan(/(\d+\.)/)[0] != nil
-      parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+    questions_array.push(paragraph)
 
-      correct_answer_scan = paragraph.scan(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)
-      correct_answer_text = correct_answer_scan[0][1]
-
-      # Had to add "pg 0" to Iggy on Question 13
-      iggy_text_scan = paragraph.scan(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)
-      iggy_text = iggy_text_scan[0][1]
-
-      rationale_scan = paragraph.scan(/(Rationale:)\s(.+)(Reduction|Health|Physiological|Basic|Pharmacology|Risk|Safe)/)
-      rationale_text = rationale_scan[0][1]
-
-      subject_scan = paragraph.scan(/(Reduction.+|Health.+|Physiological.+|Basic.+|Pharmacology.+|Risk.+|Safe.+)/)
-      subject_text = subject_scan[0][0]
-
-# Iggy: (Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)
-
-      question_object = Question.new(
-        question_number:  parsed_paragraph[0][0],
-        question_text:    parsed_paragraph[0][1],
-        choice_a:         parsed_paragraph[0][3],
-        choice_b:         parsed_paragraph[0][5],
-        choice_c:         parsed_paragraph[0][7],
-        choice_d:         parsed_paragraph[0][9],
-        correct_answer:   correct_answer_text,
-        iggy:             iggy_text,
-        rationale:        rationale_text,
-        subject:          subject_text,
-        category:         category
-        )
-      questions_array.push(question_object)
-    elsif paragraph != "\n"
-      questions_array.push(paragraph)
-      puts "There is no number here"
-    end
-    puts paragraph
   end
-    # binding.pry
-  text_file_text = text_file.read
-
-  # Look for paragraphs that fit into working REGEX
-  if text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
-    text = text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
-    puts "if statement triggered"
-  end
-
-
-  text = text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)(.[A-F]|[A-F])(Iggy:|.Iggy|Iggy)(.+)(Rationale:)(.+)(Health.+|Physiological.+)/)
-  # binding.pry
-  puts "inside process text file"
-  text_file.close
 end
 
+def turn_text_into_objects(array)
+
+  question_text_array = array
+
+  category = ""
+
+  question_text_array.each do |cell|
+
+    # Look for text to change category variable
+    if cell == "CARDIOVASCULAR/CIRCULATORY SYSTEM"
+      category = cell.capitalize
+    elsif cell == "GASTROINTESTINAL SYSTEM"
+      category = paragraph.chomp.capitalize
+    end
+
+    binding.pry
+
+    # question_object = Question.new(
+    #   question_number:  parsed_paragraph[0][0],
+    #   question_text:    parsed_paragraph[0][1],
+    #   choice_a:         parsed_paragraph[0][3],
+    #   choice_b:         parsed_paragraph[0][5],
+    #   choice_c:         parsed_paragraph[0][7],
+    #   choice_d:         parsed_paragraph[0][9],
+    #   correct_answer:   correct_answer_text,
+    #   iggy:             iggy_text,
+    #   rationale:        rationale_text,
+    #   subject:          subject_text,
+    #   category:         category
+    #   )
+    # questions_array.push(question_object)
+
+  end
+end
+
+
+
+
+#     # Look for text with question numbers on it
+#     # and capture relevant info using REGEX
+#     elsif paragraph[0...5].scan(/(\d+\.)/)[0] != nil
+#       parsed_paragraph = paragraph.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+
+#       correct_answer_scan = paragraph.scan(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)
+#       correct_answer_text = correct_answer_scan[0][1]
+
+#       # Had to add "pg 0" to Iggy on Question 13
+#       iggy_text_scan = paragraph.scan(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)
+#       iggy_text = iggy_text_scan[0][1]
+
+#       rationale_scan = paragraph.scan(/(Rationale:)\s(.+)(Reduction|Health|Physiological|Basic|Pharmacology|Risk|Safe)/)
+#       rationale_text = rationale_scan[0][1]
+
+#       subject_scan = paragraph.scan(/(Reduction.+|Health.+|Physiological.+|Basic.+|Pharmacology.+|Risk.+|Safe.+)/)
+#       subject_text = subject_scan[0][0]
+
+# # Iggy: (Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)
+
+#
+#     elsif paragraph != "\n"
+#       questions_array.push(paragraph)
+#       puts "There is no number here"
+#     end
+#     puts paragraph
+#   end
+#     binding.pry
+#   text_file_text = text_file.read
+
+#   # Look for paragraphs that fit into working REGEX
+#   if text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+#     text = text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)/)
+#     puts "if statement triggered"
+#   end
+
+
+#   text = text_file_text.scan(/(\d+\.)(.+)([A]\.)(.+)([B]\.)(.+)([C]\.)(.+)([D]\.)(.+)(Ans:|ANS:)(.[A-F]|[A-F])(Iggy:|.Iggy|Iggy)(.+)(Rationale:)(.+)(Health.+|Physiological.+)/)
+#   # binding.pry
+#   puts "inside process text file"
+#   text_file.close
+
+
 process_word_document
-process_text_file
+turn_text_into_objects(process_text_file)
 
 
 # require_relative 'question'
