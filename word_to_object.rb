@@ -2,6 +2,7 @@ require_relative 'question'
 require 'docx'
 require 'pry'
 
+@ruby_questions_array  = Array.new
 
 def word_doc_to_array
 
@@ -25,14 +26,27 @@ end
 def text_to_ruby_objects(array)
 
   questions_array = array
+
+  category = ""
+
+  questions_array.each do |cell|
+
+    case cell
+    when /CARDIOVASCULAR\/CIRCULATORY/
+      category = cell.capitalize
+    when /GASTROINTESTINAL SYSTEM/
+      category = cell.capitalize
+    end
+
+    @ruby_questions_array.push(category)
+
+  end
 # question_number, :question_text,
 #     :choice_a, :choice_b, :choice_c, :choice_d,
 #     :choice_e, :choice_f, :correct_answer, :iggy,
 #     :rationale, :subject, :category
-  puts questions_array.size
-
+  puts @ruby_questions_array.size
 end
 
 text_to_ruby_objects(word_doc_to_array)
-# binding.pry
-puts "hi"
+binding.pry
