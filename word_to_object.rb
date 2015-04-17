@@ -1,1 +1,9 @@
-word_to_object.rb
+class WordToObject
+
+  def word_to_array
+
+
+
+  end
+
+end
