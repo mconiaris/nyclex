@@ -5,6 +5,9 @@ require 'pry'
 # Create Array of Document Lines
 text_line_array = Array.new
 
+
+
+
 def process_word_document
   # Create a Docx::Document object for our existing docx file
   doc = Docx::Document.open('resources/questions.docx')
@@ -63,6 +66,9 @@ def process_word_document
   qt_file.close
 end
 
+
+
+
   # binding.pry
 # Take text from questions_text.txt and create Ruby objects
 def process_text_file
@@ -82,8 +88,33 @@ def process_text_file
 end
 
 
+
+
+def normalize_object_text(array)
+
+  object_array = array
+
+  object_array.each do |cell|
+    # If question text has a number in it, remove it
+    if cell.question_text[0...4].match(/\d+\.\s?(.+)/)
+      # binding.pry
+      cell.question_text =
+        cell.question_text.split(/\d+\.\s?(.+)/)[1].rstrip
+    end
+
+
+  end
+
+end
+
+
+
+
 def persist_objects(array)
   object_array = array
+
+
+  normalize_object_text(object_array)
 
   # Create or open stream to csvquestions.csv document
   if File.exist?('resources/csvquestions.csv') == false
@@ -97,10 +128,26 @@ def persist_objects(array)
   # Add test text to ensure that file can be written to
   q_file.puts("Testing")
 
+  # Add Array Content to Text File
+  object_array.each do |cell|
+    q_file.puts(cell.question_text)
+    # q_file.puts(cell.choice_a)
+    # q_file.puts(cell.choice_b)
+    # q_file.puts(cell.choice_c)
+    # q_file.puts(cell.choice_d)
+    # q_file.puts(cell.choice_e)
+    # q_file.puts(cell.choice_f)
+    # q_file.puts(cell.correct_answer)
+    # q_file.puts(cell.iggy)
+    # q_file.puts(cell.rationale)
+    # q_file.puts(cell.subject)
+    # q_file.puts(cell.category)
+  end
   # Close documents
   q_file.close
-  binding.pry
 end
+
+
 
 
 def turn_text_into_objects(array)
@@ -173,6 +220,9 @@ def turn_text_into_objects(array)
   end
   persist_objects(question_objects_array)
 end
+
+
+
 
 process_word_document
 turn_text_into_objects(process_text_file)
