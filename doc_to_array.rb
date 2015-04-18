@@ -11,15 +11,6 @@ def process_word_document
 
   # binding.pry
 
-  # Create or open stream to csvquestions.csv document
-  if File.exist?('resources/csvquestions.csv') == false
-    q_file = File.new('resources/csvquestions.csv', 'w+')
-    puts 'Created csvquestions.csv'
-  else
-    q_file = File.open('resources/csvquestions.csv', 'w+')
-    puts 'Opened csvquestions.csv'
-  end
-
   # Create or open stream to questions_text.txt document
   if File.exist?('resources/questions_text.txt') == false
     qt_file = File.new('resources/questions_text.txt', 'w+')
@@ -69,11 +60,6 @@ def process_word_document
       qt_file.print("QBREAK ")
     end
   end
-  # Add test text to ensure that file can be written to
-  q_file.puts("Testing")
-
-  # Close documents
-  q_file.close
   qt_file.close
 end
 
@@ -95,12 +81,34 @@ def process_text_file
   end
 end
 
+
+def persist_objects(array)
+  object_array = array
+
+  # Create or open stream to csvquestions.csv document
+  if File.exist?('resources/csvquestions.csv') == false
+    q_file = File.new('resources/csvquestions.csv', 'w+')
+    puts 'Created csvquestions.csv'
+  else
+    q_file = File.open('resources/csvquestions.csv', 'w+')
+    puts 'Opened csvquestions.csv'
+  end
+
+  # Add test text to ensure that file can be written to
+  q_file.puts("Testing")
+
+  # Close documents
+  q_file.close
+  binding.pry
+end
+
+
 def turn_text_into_objects(array)
 
   question_text_array = array
   question_objects_array = Array.new
 
-  category          = ""
+  category            = ""
 
   question_text_array.each do |cell|
 
@@ -163,7 +171,7 @@ def turn_text_into_objects(array)
       question_objects_array.push(question_object)
     end
   end
-    binding.pry
+  persist_objects(question_objects_array)
 end
 
 process_word_document
