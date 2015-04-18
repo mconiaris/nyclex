@@ -97,12 +97,15 @@ def normalize_object_text(array)
   object_array.each do |cell|
     # If question text has a number in it, remove it
     if cell.question_text[0...4].match(/\d+\.\s?(.+)/)
-      # binding.pry
       cell.question_text =
         cell.question_text.split(/\d+\.\s?(.+)/)[1].rstrip
     end
 
-
+    if !cell.choice_a.nil? && cell.choice_a.include?("A.")
+      cell.choice_a =
+        cell.choice_a.split(/[A]\.(.+)/)[1].strip
+        binding.pry
+    end
   end
 
 end
@@ -127,8 +130,8 @@ def persist_objects(array)
 
   # Add Array Content to Text File
   object_array.each do |cell|
-    q_file.puts(cell.question_text)
-    # q_file.puts(cell.choice_a)
+    # q_file.puts(cell.question_text)
+    q_file.puts(cell.choice_a)
     # q_file.puts(cell.choice_b)
     # q_file.puts(cell.choice_c)
     # q_file.puts(cell.choice_d)
