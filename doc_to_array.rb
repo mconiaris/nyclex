@@ -125,9 +125,6 @@ def persist_objects(array)
     puts 'Opened csvquestions.csv'
   end
 
-  # Add test text to ensure that file can be written to
-  q_file.puts("Testing")
-
   # Add Array Content to Text File
   object_array.each do |cell|
     q_file.puts(cell.question_text)
