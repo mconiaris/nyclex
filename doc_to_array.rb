@@ -149,11 +149,17 @@ def normalize_object_text(array)
     end
 
     if !cell.iggy.nil? && cell.iggy.include?("ggy")
-
       cell.iggy =
         cell.iggy.split(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)[2].strip
     elsif !cell.iggy.nil?
       cell.iggy = cell.iggy.strip
+    end
+
+    if !cell.rationale.nil? && cell.rationale.include?("Rationale")
+      cell.rationale =
+        cell.rationale.split(/(Rationale:)\s(.+)/)[2].strip
+    elsif !cell.rationale.nil?
+      cell.rationale = cell.rationale.strip
     end
 
   end
@@ -193,8 +199,8 @@ def persist_objects(array)
     # end
 
     # q_file.puts(cell.correct_answer)
-    q_file.puts(cell.iggy)
-    # q_file.puts(cell.rationale)
+    # q_file.puts(cell.iggy)
+    q_file.puts(cell.rationale)
     # q_file.puts(cell.subject)
     # q_file.puts(cell.category)
   end
