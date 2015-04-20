@@ -107,8 +107,6 @@ def normalize_object_text(array)
       cell.choice_b =
         cell.choice_b.split(/[B]\.(.+)/)[1].strip
     elsif !cell.choice_b.nil?
-      puts cell.choice_b
-      binding.pry
       cell.choice_b = cell.choice_b.strip
     end
   end
