@@ -118,7 +118,7 @@ def normalize_object_text(array)
     end
 
     if !cell.choice_d.nil? && cell.choice_d[0...4].include?("D.")
-      cell.choice_d D
+      cell.choice_d =
         cell.choice_d.split(/[D]\.(.+)/)[1].strip
     elsif !cell.choice_d.nil?
       cell.choice_d = cell.choice_d.strip
@@ -150,8 +150,8 @@ def persist_objects(array)
     # q_file.puts(cell.question_text)
     # q_file.puts(cell.choice_a)
     # q_file.puts(cell.choice_b)
-    q_file.puts(cell.choice_c)
-    # q_file.puts(cell.choice_d)
+    # q_file.puts(cell.choice_c)
+    q_file.puts(cell.choice_d)
     # q_file.puts(cell.choice_e)
     # q_file.puts(cell.choice_f)
     # q_file.puts(cell.correct_answer)
