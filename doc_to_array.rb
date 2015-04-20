@@ -138,6 +138,16 @@ def normalize_object_text(array)
       cell.choice_f = cell.choice_f.strip
     end
 
+    if !cell.correct_answer.nil? &&
+        (cell.correct_answer[0...5].include?("Ans:") ||
+          cell.correct_answer[0...5].include?("ANS:") )
+
+      cell.correct_answer =
+        cell.correct_answer.split(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)[2].strip
+    elsif !cell.correct_answer.nil?
+      cell.correct_answer = cell.correct_answer.strip
+    end
+
   end
 end
 
@@ -170,11 +180,11 @@ def persist_objects(array)
     #   q_file.puts(cell.choice_e)
     # end
 
-    if cell.choice_f != ""
-      q_file.puts(cell.choice_f)
-    end
+    # if cell.choice_f != ""
+    #   q_file.puts(cell.choice_f)
+    # end
 
-    # q_file.puts(cell.correct_answer)
+    q_file.puts(cell.correct_answer)
     # q_file.puts(cell.iggy)
     # q_file.puts(cell.rationale)
     # q_file.puts(cell.subject)
@@ -228,7 +238,8 @@ def turn_text_into_objects(array)
           choice_f = detail
         when /([G]\.)(.+)/
           choice_g = detail
-        when /(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/
+        # when Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/
+        when /Ans:|ANS:/
           correct_answer = detail
         when /(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/
           iggy = detail
@@ -257,7 +268,6 @@ def turn_text_into_objects(array)
     end
   end
   persist_objects(question_objects_array)
-  binding.pry
 end
 
 
