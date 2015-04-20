@@ -117,8 +117,14 @@ def normalize_object_text(array)
       cell.choice_c = cell.choice_c.strip
     end
 
+    if !cell.choice_d.nil? && cell.choice_d[0...4].include?("D.")
+      cell.choice_d D
+        cell.choice_d.split(/[D]\.(.+)/)[1].strip
+    elsif !cell.choice_d.nil?
+      cell.choice_d = cell.choice_d.strip
+    end
+
   end
-    binding.pry
 end
 
 
