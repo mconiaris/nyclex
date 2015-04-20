@@ -159,9 +159,9 @@ def persist_objects(array)
     # q_file.puts(cell.choice_b)
     # q_file.puts(cell.choice_c)
     # q_file.puts(cell.choice_d)
-    if cell.choice_e != ""
-      q_file.puts(cell.choice_e)
-    end
+    # if cell.choice_e != ""
+    #   q_file.puts(cell.choice_e)
+    # end
 
     if cell.choice_f != ""
       q_file.puts(cell.choice_f)
