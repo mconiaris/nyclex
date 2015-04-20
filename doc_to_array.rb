@@ -1,11 +1,11 @@
+require_relative 'question_category'
 require_relative 'question'
 require 'docx'
 require 'pry'
 
+
 # Create Array of Document Lines
 text_line_array = Array.new
-
-
 
 
 def process_word_document
@@ -171,7 +171,6 @@ end
 def persist_objects(array)
   object_array = array
 
-
   normalize_object_text(object_array)
 
   # Create or open stream to csvquestions.csv document
@@ -201,13 +200,12 @@ def persist_objects(array)
     # q_file.puts(cell.correct_answer)
     # q_file.puts(cell.iggy)
     # q_file.puts(cell.rationale)
-    q_file.puts(cell.subject)
-    # q_file.puts(cell.category)
+    # q_file.puts(cell.subject)
+    q_file.puts(cell.category)
   end
   # Close documents
   q_file.close
 end
-
 
 
 
@@ -216,7 +214,10 @@ def turn_text_into_objects(array)
   question_text_array = array
   question_objects_array = Array.new
 
-  category            = ""
+  # Create class aray for category string
+  category = QuestionCategory.new
+  category.category = "in doc_to_array"
+
 
   question_text_array.each do |cell|
 
@@ -234,10 +235,10 @@ def turn_text_into_objects(array)
       # in text document. Enter it in manually?)
     # TODO: Fix categories.
     # Look for text to change category variable
-    if cell == "CARDIOVASCULAR/CIRCULATORY SYSTEM"
-      category = cell.chomp.capitalize
-    elsif cell == "GASTROINTESTINAL SYSTEM"
-      category = paragraph.chomp.capitalize
+    if cell.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM")
+      category.category = cell.chomp.capitalize
+    elsif cell.include?("GASTROINTESTINAL SYSTEM")
+      category.category = cell.chomp.capitalize
     else
       question_detail_array = cell.split("QBREAK")
 
@@ -276,11 +277,12 @@ def turn_text_into_objects(array)
         iggy:             iggy,
         rationale:        rationale,
         subject:          subject,
-        category:         category
+        category:         category.category
         )
       question_objects_array.push(question_object)
     end
   end
+  binding.pry
   persist_objects(question_objects_array)
 end
 
