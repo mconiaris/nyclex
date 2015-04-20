@@ -55,8 +55,8 @@ def process_word_document
 
     qt_file.puts(p.text)
     # Print questions without questions numbers to document
-    elsif p.text != ""
-      # binding.pry
+    # Have to manually add QBREAK to question 48 answer A.
+    elsif p.to_s != ""
       qt_file.print(p.text)
       qt_file.print("QBREAK ")
     end
@@ -65,9 +65,6 @@ def process_word_document
 end
 
 
-
-
-  # binding.pry
 # Take text from questions_text.txt and create Ruby objects
 def process_text_file
   # Create Array of Questions
@@ -99,16 +96,17 @@ def normalize_object_text(array)
         cell.question_text.split(/\d+\.\s?(.+)/)[1].rstrip
     end
 
-    if !cell.choice_a.nil? && cell.choice_a.include?("A.")
+    if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
+      puts cell.choice_a
       cell.choice_a =
         cell.choice_a.split(/[A]\.(.+)/)[1].strip
     elsif !cell.choice_a.nil?
+      puts cell.choice_a
       cell.choice_a = cell.choice_a.strip
       puts "no A."
     end
   end
-        binding.pry
-
+  binding.pry
 end
 
 
@@ -226,4 +224,6 @@ end
 
 
 process_word_document
+puts "Need to manually add QBREAK to question 48 ans. A"
+binding.pry
 turn_text_into_objects(process_text_file)
