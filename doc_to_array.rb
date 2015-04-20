@@ -183,24 +183,25 @@ def persist_objects(array)
   end
 
   # Add Array Content to Text File
+  # to test normalization
   object_array.each do |cell|
-    # q_file.puts(cell.question_text)
-    # q_file.puts(cell.choice_a)
-    # q_file.puts(cell.choice_b)
-    # q_file.puts(cell.choice_c)
-    # q_file.puts(cell.choice_d)
-    # if cell.choice_e != ""
-    #   q_file.puts(cell.choice_e)
-    # end
+    q_file.puts(cell.question_text)
+    q_file.puts(cell.choice_a)
+    q_file.puts(cell.choice_b)
+    q_file.puts(cell.choice_c)
+    q_file.puts(cell.choice_d)
+    if cell.choice_e != ""
+      q_file.puts(cell.choice_e)
+    end
 
-    # if cell.choice_f != ""
-    #   q_file.puts(cell.choice_f)
-    # end
+    if cell.choice_f != ""
+      q_file.puts(cell.choice_f)
+    end
 
-    # q_file.puts(cell.correct_answer)
-    # q_file.puts(cell.iggy)
-    # q_file.puts(cell.rationale)
-    # q_file.puts(cell.subject)
+    q_file.puts(cell.correct_answer)
+    q_file.puts(cell.iggy)
+    q_file.puts(cell.rationale)
+    q_file.puts(cell.subject)
     q_file.puts(cell.category)
   end
   # Close documents
@@ -282,7 +283,6 @@ def turn_text_into_objects(array)
       question_objects_array.push(question_object)
     end
   end
-  binding.pry
   persist_objects(question_objects_array)
 end
 
