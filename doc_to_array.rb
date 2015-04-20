@@ -109,6 +109,14 @@ def normalize_object_text(array)
     elsif !cell.choice_b.nil?
       cell.choice_b = cell.choice_b.strip
     end
+
+    if !cell.choice_c.nil? && cell.choice_c[0...4].include?("C.")
+      cell.choice_c =
+        cell.choice_c.split(/[C]\.(.+)/)[1].strip
+    elsif !cell.choice_c.nil?
+      cell.choice_c = cell.choice_c.strip
+    end
+
   end
     binding.pry
 end
@@ -135,8 +143,8 @@ def persist_objects(array)
   object_array.each do |cell|
     # q_file.puts(cell.question_text)
     # q_file.puts(cell.choice_a)
-    q_file.puts(cell.choice_b)
-    # q_file.puts(cell.choice_c)
+    # q_file.puts(cell.choice_b)
+    q_file.puts(cell.choice_c)
     # q_file.puts(cell.choice_d)
     # q_file.puts(cell.choice_e)
     # q_file.puts(cell.choice_f)
