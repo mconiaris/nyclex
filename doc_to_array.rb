@@ -151,8 +151,10 @@ def persist_objects(array)
     # q_file.puts(cell.choice_a)
     # q_file.puts(cell.choice_b)
     # q_file.puts(cell.choice_c)
-    q_file.puts(cell.choice_d)
-    # q_file.puts(cell.choice_e)
+    # q_file.puts(cell.choice_d)
+    if cell.choice_e != ""
+      q_file.puts(cell.choice_e)
+    end
     # q_file.puts(cell.choice_f)
     # q_file.puts(cell.correct_answer)
     # q_file.puts(cell.iggy)
@@ -201,7 +203,9 @@ def turn_text_into_objects(array)
 
         case detail
         when /([E]\.)(.+)/
-          choice_e = detail
+          if detail[0...3].include?("E")
+            choice_e = detail
+          end
         when /([F]\.)(.+)/
           choice_f = detail
         when /([G]\.)(.+)/
