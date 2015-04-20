@@ -97,16 +97,20 @@ def normalize_object_text(array)
     end
 
     if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
-      puts cell.choice_a
       cell.choice_a =
         cell.choice_a.split(/[A]\.(.+)/)[1].strip
     elsif !cell.choice_a.nil?
-      puts cell.choice_a
       cell.choice_a = cell.choice_a.strip
-      puts "no A."
     end
+
+    if !cell.choice_b.nil? && cell.choice_b[0...3].include?("B.")
+      cell.choice_b =
+        cell.choice_b.split(/[B]\.(.+)/)[1].strip
+    elsif !cell.choice_b.nil?
+      cell.choice_b = cell.choice_b.strip
+    end
+
   end
-  binding.pry
 end
 
 
@@ -130,8 +134,8 @@ def persist_objects(array)
   # Add Array Content to Text File
   object_array.each do |cell|
     # q_file.puts(cell.question_text)
-    q_file.puts(cell.choice_a)
-    # q_file.puts(cell.choice_b)
+    # q_file.puts(cell.choice_a)
+    q_file.puts(cell.choice_b)
     # q_file.puts(cell.choice_c)
     # q_file.puts(cell.choice_d)
     # q_file.puts(cell.choice_e)
