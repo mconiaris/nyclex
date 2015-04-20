@@ -12,8 +12,6 @@ def process_word_document
   # Create a Docx::Document object for our existing docx file
   doc = Docx::Document.open('resources/questions.docx')
 
-  # binding.pry
-
   # Create or open stream to questions_text.txt document
   if File.exist?('resources/questions_text.txt') == false
     qt_file = File.new('resources/questions_text.txt', 'w+')
@@ -104,9 +102,12 @@ def normalize_object_text(array)
     if !cell.choice_a.nil? && cell.choice_a.include?("A.")
       cell.choice_a =
         cell.choice_a.split(/[A]\.(.+)/)[1].strip
-        binding.pry
+    elsif !cell.choice_a.nil?
+      cell.choice_a = cell.choice_a.strip
+      puts "no A."
     end
   end
+        binding.pry
 
 end
 
