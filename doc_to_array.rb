@@ -103,14 +103,16 @@ def normalize_object_text(array)
       cell.choice_a = cell.choice_a.strip
     end
 
-    if !cell.choice_b.nil? && cell.choice_b[0...3].include?("B.")
+    if !cell.choice_b.nil? && cell.choice_b[0...4].include?("B.")
       cell.choice_b =
         cell.choice_b.split(/[B]\.(.+)/)[1].strip
     elsif !cell.choice_b.nil?
+      puts cell.choice_b
+      binding.pry
       cell.choice_b = cell.choice_b.strip
     end
-
   end
+    binding.pry
 end
 
 
