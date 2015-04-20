@@ -200,8 +200,8 @@ def persist_objects(array)
 
     # q_file.puts(cell.correct_answer)
     # q_file.puts(cell.iggy)
-    q_file.puts(cell.rationale)
-    # q_file.puts(cell.subject)
+    # q_file.puts(cell.rationale)
+    q_file.puts(cell.subject)
     # q_file.puts(cell.category)
   end
   # Close documents
@@ -260,7 +260,7 @@ def turn_text_into_objects(array)
         when /(Rationale:)\s(.+)/
           rationale = detail
         else
-          subject = detail
+          subject = detail.strip
         end
       end
 
