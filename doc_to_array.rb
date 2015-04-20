@@ -162,7 +162,11 @@ def persist_objects(array)
     if cell.choice_e != ""
       q_file.puts(cell.choice_e)
     end
-    # q_file.puts(cell.choice_f)
+
+    if cell.choice_f != ""
+      q_file.puts(cell.choice_f)
+    end
+
     # q_file.puts(cell.correct_answer)
     # q_file.puts(cell.iggy)
     # q_file.puts(cell.rationale)
