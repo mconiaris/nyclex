@@ -247,7 +247,6 @@ def turn_text_into_objects(array)
         choice_d:         question_detail_array[4],
         choice_e:         choice_e,
         choice_f:         choice_f,
-        choice_g:         choice_g,
         correct_answer:   correct_answer,
         iggy:             iggy,
         rationale:        rationale,
@@ -258,6 +257,7 @@ def turn_text_into_objects(array)
     end
   end
   persist_objects(question_objects_array)
+  binding.pry
 end
 
 
