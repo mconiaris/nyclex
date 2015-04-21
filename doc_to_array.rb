@@ -9,9 +9,6 @@ require 'pry'
 text_line_array = Array.new
 
 
-
-
-
 # Take text from questions_text.txt and create Ruby objects
 def process_text_file
   # Create Array of Questions
