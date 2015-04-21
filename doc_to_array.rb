@@ -9,11 +9,11 @@ require 'pry'
 text_line_array = Array.new
 
 
-# Take text from questions_text.txt and create Ruby objects
+# Take text from questions_text.txt and create
+# Ruby objects
 def process_text_file
   # Create Array of Questions
   questions_array = Array.new
-
 
   # Open questions_text document
   text_file = File.open('resources/questions_text.txt')
@@ -28,7 +28,8 @@ end
 
 
 
-
+# This message takes out all of the spacing quirks and
+# odd characters that make the document less useful.
 def normalize_object_text(array)
 
   object_array = array
@@ -40,6 +41,7 @@ def normalize_object_text(array)
         cell.question_text.split(/\d+\.\s?(.+)/)[1].rstrip
     end
 
+    # Removes the "A." from choice_a text.
     if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
       cell.choice_a =
         cell.choice_a.split(/[A]\.(.+)/)[1].strip
@@ -47,6 +49,7 @@ def normalize_object_text(array)
       cell.choice_a = cell.choice_a.strip
     end
 
+    # Removes the "B." from choice_b text.
     if !cell.choice_b.nil? && cell.choice_b[0...4].include?("B.")
       cell.choice_b =
         cell.choice_b.split(/[B]\.(.+)/)[1].strip
@@ -54,6 +57,7 @@ def normalize_object_text(array)
       cell.choice_b = cell.choice_b.strip
     end
 
+    # Removes the "C." from choice_c text.
     if !cell.choice_c.nil? && cell.choice_c[0...4].include?("C.")
       cell.choice_c =
         cell.choice_c.split(/[C]\.(.+)/)[1].strip
@@ -61,6 +65,7 @@ def normalize_object_text(array)
       cell.choice_c = cell.choice_c.strip
     end
 
+    # Removes the "D." from choice_d text.
     if !cell.choice_d.nil? && cell.choice_d[0...4].include?("D.")
       cell.choice_d =
         cell.choice_d.split(/[D]\.(.+)/)[1].strip
@@ -68,6 +73,7 @@ def normalize_object_text(array)
       cell.choice_d = cell.choice_d.strip
     end
 
+    # Removes the "E." from choice_e text.
     if !cell.choice_e.nil? && cell.choice_e[0...4].include?("E.")
       cell.choice_e =
         cell.choice_e.split(/[E]\.(.+)/)[1].strip
@@ -75,6 +81,7 @@ def normalize_object_text(array)
       cell.choice_e = cell.choice_e.strip
     end
 
+    # Removes the "F." from choice_f text.
     if !cell.choice_f.nil? && cell.choice_f[0...4].include?("F.")
       cell.choice_f =
         cell.choice_f.split(/[F]\.(.+)/)[1].strip
@@ -82,6 +89,7 @@ def normalize_object_text(array)
       cell.choice_f = cell.choice_f.strip
     end
 
+    # Removes the "Ans." from correct_answer text.
     if !cell.correct_answer.nil? &&
         (cell.correct_answer[0...5].include?("Ans:") ||
           cell.correct_answer[0...5].include?("ANS:") )
@@ -92,6 +100,7 @@ def normalize_object_text(array)
       cell.correct_answer = cell.correct_answer.strip
     end
 
+    # Removes the "Iggy." from iggy text.
     if !cell.iggy.nil? && cell.iggy.include?("ggy")
       cell.iggy =
         cell.iggy.split(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)[2].strip
@@ -99,22 +108,22 @@ def normalize_object_text(array)
       cell.iggy = cell.iggy.strip
     end
 
+    # Removes the "rationale" from rationale text.
     if !cell.rationale.nil? && cell.rationale.include?("Rationale")
       cell.rationale =
         cell.rationale.split(/(Rationale:)\s(.+)/)[2].strip
     elsif !cell.rationale.nil?
       cell.rationale = cell.rationale.strip
     end
-
   end
 end
 
-
-
-
+# Takes Ruby objects and puts them into text form
 def persist_objects(array)
   object_array = array
 
+  # Calls normalize_object_text method
+  # to clean up text and make it uniform
   normalize_object_text(object_array)
 
   # Create or open stream to csvquestions.csv document
@@ -134,10 +143,13 @@ def persist_objects(array)
     q_file.puts(cell.choice_b)
     q_file.puts(cell.choice_c)
     q_file.puts(cell.choice_d)
+
+    # Not every question object has a choice e
     if cell.choice_e != ""
       q_file.puts(cell.choice_e)
     end
 
+    # Not every question object has a choice f
     if cell.choice_f != ""
       q_file.puts(cell.choice_f)
     end
@@ -153,17 +165,24 @@ def persist_objects(array)
 end
 
 
-
+# Take text lines and combine them into
+# Ruby objects
 def turn_text_into_objects(array)
 
+  # Incoming text Data
   question_text_array = array
+
+  # Outgoing Question Objects
   question_objects_array = Array.new
 
   # Create class aray for category string
   category = QuestionCategory.new
+
+  # This is template data to test for errors
+  # and should not show up on the final objects
   category.category = "in doc_to_array"
 
-
+  # Loop through each line and create Question objects
   question_text_array.each do |cell|
 
     # To be overwritten with REGEX scans
@@ -176,9 +195,6 @@ def turn_text_into_objects(array)
     subject           = ""
 
 
-    # TODO: Fix question #29 answers E-G (not showing
-      # in text document. Enter it in manually?)
-    # TODO: Fix categories.
     # Look for text to change category variable
     if cell.include?("CARDIOVASCULAR/CIRCULATORY SYSTEM")
       category.category = cell.chomp.capitalize
@@ -198,7 +214,6 @@ def turn_text_into_objects(array)
           choice_f = detail
         when /([G]\.)(.+)/
           choice_g = detail
-        # when Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/
         when /Ans:|ANS:/
           correct_answer = detail
         when /(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/
@@ -232,7 +247,7 @@ end
 
 
 
-
+# Main Program
 process_word_document
 puts "Need to manually add QBREAK to question 48 ans. A"
 binding.pry
