@@ -1,3 +1,9 @@
+require 'docx'
+require 'pry'
+
+# This takes in a Word Document and copies its data
+# to a text document with additional tags for future
+# splits.
 def process_word_document
   # Create a Docx::Document object for our existing docx file
   doc = Docx::Document.open('resources/questions.docx')

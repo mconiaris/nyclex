@@ -1,5 +1,4 @@
 require_relative 'question'
-require 'docx'
 require 'pry'
 
 @ruby_questions_array  = Array.new
