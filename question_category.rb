@@ -9,8 +9,4 @@ class QuestionCategory
     @@category = "Pick a category"
 
   end
-
-
-
-
 end
