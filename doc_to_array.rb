@@ -135,6 +135,7 @@ def persist_objects(array)
     puts 'Opened jsonquestions.txt'
   end
 
+  binding.pry
   # Add Array Content to Text File
   # to test normalization
   object_array.each do |cell|
@@ -161,7 +162,6 @@ def persist_objects(array)
     q_file.puts(cell.category)
   end
   # Close documents
-  binding.pry
   q_file.close
 end
 
@@ -243,6 +243,7 @@ def turn_text_into_objects(array)
       question_objects_array.push(question_object)
     end
   end
+  binding.pry
   persist_objects(question_objects_array)
 end
 
