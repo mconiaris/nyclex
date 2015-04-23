@@ -126,13 +126,13 @@ def persist_objects(array)
   # to clean up text and make it uniform
   normalize_object_text(object_array)
 
-  # Create or open stream to csvquestions.csv document
-  if File.exist?('resources/csvquestions.csv') == false
-    q_file = File.new('resources/csvquestions.csv', 'w+')
-    puts 'Created csvquestions.csv'
+  # Create or open stream to jsonquestions.txt document
+  if File.exist?('resources/jsonquestions.txt') == false
+    q_file = File.new('resources/jsonquestions.txt', 'w+')
+    puts 'Created jsonquestions.txt'
   else
-    q_file = File.open('resources/csvquestions.csv', 'w+')
-    puts 'Opened csvquestions.csv'
+    q_file = File.open('resources/jsonquestions.txt', 'w+')
+    puts 'Opened jsonquestions.txt'
   end
 
   # Add Array Content to Text File
