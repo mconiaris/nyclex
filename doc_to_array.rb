@@ -116,6 +116,7 @@ def normalize_object_text(array)
       cell.rationale = cell.rationale.strip
     end
   end
+  binding.pry
 end
 
 # Takes Ruby objects and puts them into text form
