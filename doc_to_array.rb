@@ -116,7 +116,6 @@ def normalize_object_text(array)
       cell.rationale = cell.rationale.strip
     end
   end
-  binding.pry
 end
 
 # Takes Ruby objects and puts them into text form
@@ -162,6 +161,7 @@ def persist_objects(array)
     q_file.puts(cell.category)
   end
   # Close documents
+  binding.pry
   q_file.close
 end
 
