@@ -126,18 +126,46 @@ def persist_objects(array)
   # to clean up text and make it uniform
   normalize_object_text(object_array)
 
-  # Create or open stream to csvquestions.csv document
-  if File.exist?('resources/csvquestions.csv') == false
-    q_file = File.new('resources/csvquestions.csv', 'w+')
-    puts 'Created csvquestions.csv'
+  # Create or open stream to jsonquestions.txt document
+  if File.exist?('resources/jsonquestions.txt') == false
+    q_file = File.new('resources/jsonquestions.txt', 'w+')
+    puts 'Created jsonquestions.txt'
   else
-    q_file = File.open('resources/csvquestions.csv', 'w+')
-    puts 'Opened csvquestions.csv'
+    q_file = File.open('resources/jsonquestions.txt', 'w+')
+    puts 'Opened jsonquestions.txt'
   end
 
   # Add Array Content to Text File
-  # to test normalization
+  # in json format
   object_array.each do |cell|
+
+    q_file.puts(cell.to_json)
+
+  end
+  # Close documents
+  q_file.close
+end
+
+# Takes Ruby objects and puts them into text form
+def test_normalization(array)
+  object_array = array
+
+  # Calls normalize_object_text method
+  # to clean up text and make it uniform
+  normalize_object_text(object_array)
+
+  # Create or open stream to jsonquestions.txt document
+  if File.exist?('resources/jsonquestions.txt') == false
+    q_file = File.new('resources/jsonquestions.txt', 'w+')
+    puts 'Created jsonquestions.txt'
+  else
+    q_file = File.open('resources/jsonquestions.txt', 'w+')
+    puts 'Opened jsonquestions.txt'
+  end
+
+  # Add Array Content to Text File
+  object_array.each do |cell|
+
     q_file.puts(cell.question_text)
     q_file.puts(cell.choice_a)
     q_file.puts(cell.choice_b)
@@ -163,6 +191,7 @@ def persist_objects(array)
   # Close documents
   q_file.close
 end
+
 
 
 # Take text lines and combine them into
@@ -243,6 +272,7 @@ def turn_text_into_objects(array)
     end
   end
   persist_objects(question_objects_array)
+  question_objects_array
 end
 
 
@@ -252,3 +282,4 @@ process_word_document
 puts "Need to manually add QBREAK to question 48 ans. A"
 binding.pry
 turn_text_into_objects(process_text_file)
+binding.pry

@@ -1,3 +1,5 @@
+require 'json'
+
 class Question
 
   attr_accessor :question_text,
@@ -22,4 +24,27 @@ class Question
     @category         = args[:category]
   end
 
+  # Takes Ruby objects and puts them into json form
+  def to_json
+    {
+        "json_class"  =>  self.class.name,
+        "data"        =>  {
+
+          "question_text"     =>  question_text,
+          "choice_a"          =>  choice_a,
+          "choice_b"          =>  choice_b,
+          "choice_c"          =>  choice_c,
+          "choice_d"          =>  choice_d,
+          "choice_e"          =>  choice_e,
+          "choice_f"          =>  choice_f,
+          "correct_answer"    =>  correct_answer,
+          "iggy"              =>  iggy,
+          "rationale"         =>  rationale,
+          "subject"           =>  subject,
+          "category"          =>  category
+          }
+
+    }.to_json
+
+  end
 end
