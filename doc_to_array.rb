@@ -26,6 +26,12 @@ def process_text_file
   end
 end
 
+def normalize_question_text(text)
+
+  text.split(/\d+\.\s?(.+)/)[1].rstrip
+
+end
+
 
 
 # This message takes out all of the spacing quirks and
@@ -38,7 +44,7 @@ def normalize_object_text(array)
     # If question text has a number in it, remove it
     if cell.question_text[0...4].match(/\d+\.\s?(.+)/)
       cell.question_text =
-        cell.question_text.split(/\d+\.\s?(.+)/)[1].rstrip
+        normalize_question_text(cell.question_text)
     end
 
     # Removes the "A." from choice_a text.
@@ -273,6 +279,7 @@ def turn_text_into_objects(array)
   end
   persist_objects(question_objects_array)
   question_objects_array
+  binding.pry
 end
 
 
@@ -282,4 +289,3 @@ process_word_document
 puts "Need to manually add QBREAK to question 48 ans. A"
 binding.pry
 turn_text_into_objects(process_text_file)
-binding.pry
