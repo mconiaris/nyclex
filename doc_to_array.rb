@@ -26,10 +26,15 @@ def process_text_file
   end
 end
 
-def normalize_question_text(text)
+def normalize_question_text(cell)
 
-  text.split(/\d+\.\s?(.+)/)[1].rstrip
+  # binding.pry
 
+  # If question text has a number in it, remove it
+  if cell.question_text[0...4].match(/\d+\.\s?(.+)/)
+    cell.question_text =
+      cell.question_text.split(/\d+\.\s?(.+)/)[1].rstrip
+  end
 end
 
 
@@ -41,11 +46,9 @@ def normalize_object_text(array)
   object_array = array
 
   object_array.each do |cell|
-    # If question text has a number in it, remove it
-    if cell.question_text[0...4].match(/\d+\.\s?(.+)/)
-      cell.question_text =
-        normalize_question_text(cell.question_text)
-    end
+
+    normalize_question_text(cell)
+
 
     # Removes the "A." from choice_a text.
     if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
