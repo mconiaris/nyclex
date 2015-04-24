@@ -27,9 +27,6 @@ def process_text_file
 end
 
 def normalize_question_text(cell)
-
-  # binding.pry
-
   # If question text has a number in it, remove it
   if cell.question_text[0...4].match(/\d+\.\s?(.+)/)
     cell.question_text =
@@ -37,6 +34,15 @@ def normalize_question_text(cell)
   end
 end
 
+def normalize_choice_a(cell)
+  # Removes the "A." from choice_a text.
+  if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
+    cell.choice_a =
+      cell.choice_a.split(/[A]\.(.+)/)[1].strip
+  elsif !cell.choice_a.nil?
+    cell.choice_a = cell.choice_a.strip
+  end
+end
 
 
 # This message takes out all of the spacing quirks and
@@ -49,14 +55,8 @@ def normalize_object_text(array)
 
     normalize_question_text(cell)
 
+    normalize_choice_a(cell)
 
-    # Removes the "A." from choice_a text.
-    if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
-      cell.choice_a =
-        cell.choice_a.split(/[A]\.(.+)/)[1].strip
-    elsif !cell.choice_a.nil?
-      cell.choice_a = cell.choice_a.strip
-    end
 
     # Removes the "B." from choice_b text.
     if !cell.choice_b.nil? && cell.choice_b[0...4].include?("B.")
