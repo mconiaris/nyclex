@@ -43,8 +43,13 @@ def normalize_question_a(cell)
   elsif !cell.choice_a.nil?
     cell.choice_a = cell.choice_a.strip
   end
+end
+
+def normalize_question_b(cell)
 
 end
+
+
 
 
 # This message takes out all of the spacing quirks and
