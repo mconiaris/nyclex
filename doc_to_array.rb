@@ -27,9 +27,6 @@ def process_text_file
 end
 
 def normalize_question_text(cell)
-
-  # binding.pry
-
   # If question text has a number in it, remove it
   if cell.question_text[0...4].match(/\d+\.\s?(.+)/)
     cell.question_text =
@@ -37,6 +34,10 @@ def normalize_question_text(cell)
   end
 end
 
+def normalize_question_a(cell)
+  # binding.pry
+
+end
 
 
 # This message takes out all of the spacing quirks and
