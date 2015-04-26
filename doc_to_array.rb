@@ -36,6 +36,13 @@ end
 
 def normalize_question_a(cell)
   # binding.pry
+  # Removes the "A." from choice_a text.
+  if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
+    cell.choice_a =
+      cell.choice_a.split(/[A]\.(.+)/)[1].strip
+  elsif !cell.choice_a.nil?
+    cell.choice_a = cell.choice_a.strip
+  end
 
 end
 
@@ -50,14 +57,7 @@ def normalize_object_text(array)
 
     normalize_question_text(cell)
 
-
-    # Removes the "A." from choice_a text.
-    if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
-      cell.choice_a =
-        cell.choice_a.split(/[A]\.(.+)/)[1].strip
-    elsif !cell.choice_a.nil?
-      cell.choice_a = cell.choice_a.strip
-    end
+    normalize_question_a(cell)
 
     # Removes the "B." from choice_b text.
     if !cell.choice_b.nil? && cell.choice_b[0...4].include?("B.")
