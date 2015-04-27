@@ -53,7 +53,16 @@ def normalize_answer_b(cell)
   elsif !cell.choice_b.nil?
     cell.choice_b = cell.choice_b.strip
   end
+end
 
+def normalize_answer_c(cell)
+  # Removes the "C." from choice_c text.
+  if !cell.choice_c.nil? && cell.choice_c[0...4].include?("C.")
+    cell.choice_c =
+      cell.choice_c.split(/[C]\.(.+)/)[1].strip
+  elsif !cell.choice_c.nil?
+    cell.choice_c = cell.choice_c.strip
+  end
 end
 
 
@@ -73,13 +82,7 @@ def normalize_object_text(array)
 
     normalize_answer_b(cell)
 
-    # Removes the "C." from choice_c text.
-    if !cell.choice_c.nil? && cell.choice_c[0...4].include?("C.")
-      cell.choice_c =
-        cell.choice_c.split(/[C]\.(.+)/)[1].strip
-    elsif !cell.choice_c.nil?
-      cell.choice_c = cell.choice_c.strip
-    end
+
 
     # Removes the "D." from choice_d text.
     if !cell.choice_d.nil? && cell.choice_d[0...4].include?("D.")
