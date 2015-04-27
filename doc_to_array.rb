@@ -75,6 +75,16 @@ def normalize_answer_d(cell)
   end
 end
 
+def normalize_answer_e(cell)
+  # Removes the "E." from choice_e text.
+  if !cell.choice_e.nil? && cell.choice_e[0...4].include?("E.")
+    cell.choice_e =
+      cell.choice_e.split(/[E]\.(.+)/)[1].strip
+  elsif !cell.choice_e.nil?
+    cell.choice_e = cell.choice_e.strip
+  end
+end
+
 
 # This message takes out all of the spacing quirks and
 # odd characters that make the document less useful.
@@ -92,15 +102,9 @@ def normalize_object_text(array)
 
     normalize_answer_c(cell)
 
+    normalize_answer_d(cell)
 
-
-    # Removes the "E." from choice_e text.
-    if !cell.choice_e.nil? && cell.choice_e[0...4].include?("E.")
-      cell.choice_e =
-        cell.choice_e.split(/[E]\.(.+)/)[1].strip
-    elsif !cell.choice_e.nil?
-      cell.choice_e = cell.choice_e.strip
-    end
+    normalize_answer_e(cell)
 
     # Removes the "F." from choice_f text.
     if !cell.choice_f.nil? && cell.choice_f[0...4].include?("F.")
