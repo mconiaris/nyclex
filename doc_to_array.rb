@@ -34,7 +34,7 @@ def normalize_question_text(cell)
   end
 end
 
-def normalize_question_a(cell)
+def normalize_answer_a(cell)
   # binding.pry
   # Removes the "A." from choice_a text.
   if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
@@ -45,7 +45,7 @@ def normalize_question_a(cell)
   end
 end
 
-def normalize_question_b(cell)
+def normalize_answer_b(cell)
   # Removes the "B." from choice_b text.
   if !cell.choice_b.nil? && cell.choice_b[0...4].include?("B.")
     cell.choice_b =
@@ -69,9 +69,9 @@ def normalize_object_text(array)
 
     normalize_question_text(cell)
 
-    normalize_question_a(cell)
+    normalize_answer_a(cell)
 
-    normalize_question_b(cell)
+    normalize_answer_b(cell)
 
     # Removes the "C." from choice_c text.
     if !cell.choice_c.nil? && cell.choice_c[0...4].include?("C.")
