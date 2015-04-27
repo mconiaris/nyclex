@@ -34,8 +34,12 @@ def normalize_question_text(cell)
   end
 end
 
+<<<<<<< HEAD
 def normalize_answer_a(cell)
   # binding.pry
+=======
+def normalize_choice_a(cell)
+>>>>>>> master
   # Removes the "A." from choice_a text.
   if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
     cell.choice_a =
@@ -44,6 +48,7 @@ def normalize_answer_a(cell)
     cell.choice_a = cell.choice_a.strip
   end
 end
+<<<<<<< HEAD
 
 def normalize_answer_b(cell)
   # Removes the "B." from choice_b text.
@@ -94,6 +99,8 @@ def normalize_answer_f(cell)
     cell.choice_f = cell.choice_f.strip
   end
 end
+=======
+>>>>>>> master
 
 
 # This message takes out all of the spacing quirks and
@@ -106,9 +113,14 @@ def normalize_object_text(array)
 
     normalize_question_text(cell)
 
+<<<<<<< HEAD
     normalize_answer_a(cell)
 
     normalize_answer_b(cell)
+=======
+    normalize_choice_a(cell)
+
+>>>>>>> master
 
     normalize_answer_c(cell)
 
