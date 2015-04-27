@@ -34,13 +34,64 @@ def normalize_question_text(cell)
   end
 end
 
-def normalize_choice_a(cell)
+def normalize_answer_a(cell)
+  # binding.pry
   # Removes the "A." from choice_a text.
   if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
     cell.choice_a =
       cell.choice_a.split(/[A]\.(.+)/)[1].strip
   elsif !cell.choice_a.nil?
     cell.choice_a = cell.choice_a.strip
+  end
+end
+
+def normalize_answer_b(cell)
+  # Removes the "B." from choice_b text.
+  if !cell.choice_b.nil? && cell.choice_b[0...4].include?("B.")
+    cell.choice_b =
+      cell.choice_b.split(/[B]\.(.+)/)[1].strip
+  elsif !cell.choice_b.nil?
+    cell.choice_b = cell.choice_b.strip
+  end
+end
+
+def normalize_answer_c(cell)
+  # Removes the "C." from choice_c text.
+  if !cell.choice_c.nil? && cell.choice_c[0...4].include?("C.")
+    cell.choice_c =
+      cell.choice_c.split(/[C]\.(.+)/)[1].strip
+  elsif !cell.choice_c.nil?
+    cell.choice_c = cell.choice_c.strip
+  end
+end
+
+def normalize_answer_d(cell)
+  # Removes the "D." from choice_d text.
+  if !cell.choice_d.nil? && cell.choice_d[0...4].include?("D.")
+    cell.choice_d =
+      cell.choice_d.split(/[D]\.(.+)/)[1].strip
+  elsif !cell.choice_d.nil?
+    cell.choice_d = cell.choice_d.strip
+  end
+end
+
+def normalize_answer_e(cell)
+  # Removes the "E." from choice_e text.
+  if !cell.choice_e.nil? && cell.choice_e[0...4].include?("E.")
+    cell.choice_e =
+      cell.choice_e.split(/[E]\.(.+)/)[1].strip
+  elsif !cell.choice_e.nil?
+    cell.choice_e = cell.choice_e.strip
+  end
+end
+
+def normalize_answer_f(cell)
+  # Removes the "F." from choice_f text.
+  if !cell.choice_f.nil? && cell.choice_f[0...4].include?("F.")
+    cell.choice_f =
+      cell.choice_f.split(/[F]\.(.+)/)[1].strip
+  elsif !cell.choice_f.nil?
+    cell.choice_f = cell.choice_f.strip
   end
 end
 
@@ -55,48 +106,17 @@ def normalize_object_text(array)
 
     normalize_question_text(cell)
 
-    normalize_choice_a(cell)
+    normalize_answer_a(cell)
 
+    normalize_answer_b(cell)
 
-    # Removes the "B." from choice_b text.
-    if !cell.choice_b.nil? && cell.choice_b[0...4].include?("B.")
-      cell.choice_b =
-        cell.choice_b.split(/[B]\.(.+)/)[1].strip
-    elsif !cell.choice_b.nil?
-      cell.choice_b = cell.choice_b.strip
-    end
+    normalize_answer_c(cell)
 
-    # Removes the "C." from choice_c text.
-    if !cell.choice_c.nil? && cell.choice_c[0...4].include?("C.")
-      cell.choice_c =
-        cell.choice_c.split(/[C]\.(.+)/)[1].strip
-    elsif !cell.choice_c.nil?
-      cell.choice_c = cell.choice_c.strip
-    end
+    normalize_answer_d(cell)
 
-    # Removes the "D." from choice_d text.
-    if !cell.choice_d.nil? && cell.choice_d[0...4].include?("D.")
-      cell.choice_d =
-        cell.choice_d.split(/[D]\.(.+)/)[1].strip
-    elsif !cell.choice_d.nil?
-      cell.choice_d = cell.choice_d.strip
-    end
+    normalize_answer_e(cell)
 
-    # Removes the "E." from choice_e text.
-    if !cell.choice_e.nil? && cell.choice_e[0...4].include?("E.")
-      cell.choice_e =
-        cell.choice_e.split(/[E]\.(.+)/)[1].strip
-    elsif !cell.choice_e.nil?
-      cell.choice_e = cell.choice_e.strip
-    end
-
-    # Removes the "F." from choice_f text.
-    if !cell.choice_f.nil? && cell.choice_f[0...4].include?("F.")
-      cell.choice_f =
-        cell.choice_f.split(/[F]\.(.+)/)[1].strip
-    elsif !cell.choice_f.nil?
-      cell.choice_f = cell.choice_f.strip
-    end
+    normalize_answer_f(cell)
 
     # Removes the "Ans." from correct_answer text.
     if !cell.correct_answer.nil? &&
