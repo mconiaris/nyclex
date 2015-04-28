@@ -108,6 +108,16 @@ def normalize_correct_answer(cell)
   end
 end
 
+def normalize_iggy(cell)
+  # Removes the "Iggy." from iggy text.
+  if !cell.iggy.nil? && cell.iggy.include?("ggy")
+    cell.iggy =
+      cell.iggy.split(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)[2].strip
+  elsif !cell.iggy.nil?
+    cell.iggy = cell.iggy.strip
+  end
+end
+
 
 # This message takes out all of the spacing quirks and
 # odd characters that make the document less useful.
@@ -132,6 +142,8 @@ def normalize_object_text(array)
     normalize_answer_f(cell)
 
     normalize_correct_answer(cell)
+
+    normalize_iggy(cell)
 
     # Removes the "Iggy." from iggy text.
     if !cell.iggy.nil? && cell.iggy.include?("ggy")
