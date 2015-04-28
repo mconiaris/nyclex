@@ -118,6 +118,16 @@ def normalize_iggy(cell)
   end
 end
 
+def normalize_rationale(cell)
+  # Removes the "rationale" from rationale text.
+  if !cell.rationale.nil? && cell.rationale.include?("Rationale")
+    cell.rationale =
+      cell.rationale.split(/(Rationale:)\s(.+)/)[2].strip
+  elsif !cell.rationale.nil?
+    cell.rationale = cell.rationale.strip
+  end
+end
+
 
 # This message takes out all of the spacing quirks and
 # odd characters that make the document less useful.
@@ -145,13 +155,8 @@ def normalize_object_text(array)
 
     normalize_iggy(cell)
 
-    # Removes the "rationale" from rationale text.
-    if !cell.rationale.nil? && cell.rationale.include?("Rationale")
-      cell.rationale =
-        cell.rationale.split(/(Rationale:)\s(.+)/)[2].strip
-    elsif !cell.rationale.nil?
-      cell.rationale = cell.rationale.strip
-    end
+    normalize_rationale(cell)
+
   end
 end
 
