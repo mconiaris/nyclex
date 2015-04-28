@@ -95,6 +95,39 @@ def normalize_answer_f(cell)
   end
 end
 
+def normalize_correct_answer(cell)
+  # Removes the "Ans." from correct_answer text.
+  if !cell.correct_answer.nil? &&
+      (cell.correct_answer[0...5].include?("Ans:") ||
+        cell.correct_answer[0...5].include?("ANS:") )
+
+    cell.correct_answer =
+      cell.correct_answer.split(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)[2].strip
+  elsif !cell.correct_answer.nil?
+    cell.correct_answer = cell.correct_answer.strip
+  end
+end
+
+def normalize_iggy(cell)
+  # Removes the "Iggy." from iggy text.
+  if !cell.iggy.nil? && cell.iggy.include?("ggy")
+    cell.iggy =
+      cell.iggy.split(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)[2].strip
+  elsif !cell.iggy.nil?
+    cell.iggy = cell.iggy.strip
+  end
+end
+
+def normalize_rationale(cell)
+  # Removes the "rationale" from rationale text.
+  if !cell.rationale.nil? && cell.rationale.include?("Rationale")
+    cell.rationale =
+      cell.rationale.split(/(Rationale:)\s(.+)/)[2].strip
+  elsif !cell.rationale.nil?
+    cell.rationale = cell.rationale.strip
+  end
+end
+
 
 # This message takes out all of the spacing quirks and
 # odd characters that make the document less useful.
@@ -118,32 +151,12 @@ def normalize_object_text(array)
 
     normalize_answer_f(cell)
 
-    # Removes the "Ans." from correct_answer text.
-    if !cell.correct_answer.nil? &&
-        (cell.correct_answer[0...5].include?("Ans:") ||
-          cell.correct_answer[0...5].include?("ANS:") )
+    normalize_correct_answer(cell)
 
-      cell.correct_answer =
-        cell.correct_answer.split(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)[2].strip
-    elsif !cell.correct_answer.nil?
-      cell.correct_answer = cell.correct_answer.strip
-    end
+    normalize_iggy(cell)
 
-    # Removes the "Iggy." from iggy text.
-    if !cell.iggy.nil? && cell.iggy.include?("ggy")
-      cell.iggy =
-        cell.iggy.split(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)[2].strip
-    elsif !cell.iggy.nil?
-      cell.iggy = cell.iggy.strip
-    end
+    normalize_rationale(cell)
 
-    # Removes the "rationale" from rationale text.
-    if !cell.rationale.nil? && cell.rationale.include?("Rationale")
-      cell.rationale =
-        cell.rationale.split(/(Rationale:)\s(.+)/)[2].strip
-    elsif !cell.rationale.nil?
-      cell.rationale = cell.rationale.strip
-    end
   end
 end
 
@@ -309,6 +322,7 @@ end
 
 # Main Program
 process_word_document
-puts "Need to manually add QBREAK to question 48 ans. A"
-binding.pry
 turn_text_into_objects(process_text_file)
+
+# TODO: Make test to confirm that question_objects_array[48].choice_a
+# equals "Scheduling uninterrupted rest periods during the day."
