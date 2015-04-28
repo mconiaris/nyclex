@@ -24,6 +24,7 @@ def process_text_file
     questions_array.push(paragraph)
 
   end
+  binding.pry
 end
 
 def normalize_question_text(cell)
@@ -95,6 +96,19 @@ def normalize_answer_f(cell)
   end
 end
 
+def normalize_correct_answer(cell)
+  # Removes the "Ans." from correct_answer text.
+  if !cell.correct_answer.nil? &&
+      (cell.correct_answer[0...5].include?("Ans:") ||
+        cell.correct_answer[0...5].include?("ANS:") )
+
+    cell.correct_answer =
+      cell.correct_answer.split(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)[2].strip
+  elsif !cell.correct_answer.nil?
+    cell.correct_answer = cell.correct_answer.strip
+  end
+end
+
 
 # This message takes out all of the spacing quirks and
 # odd characters that make the document less useful.
@@ -118,16 +132,7 @@ def normalize_object_text(array)
 
     normalize_answer_f(cell)
 
-    # Removes the "Ans." from correct_answer text.
-    if !cell.correct_answer.nil? &&
-        (cell.correct_answer[0...5].include?("Ans:") ||
-          cell.correct_answer[0...5].include?("ANS:") )
 
-      cell.correct_answer =
-        cell.correct_answer.split(/(Ans:|ANS:)(.[[A-G],* ]+|[[A-G],* ]+)/)[2].strip
-    elsif !cell.correct_answer.nil?
-      cell.correct_answer = cell.correct_answer.strip
-    end
 
     # Removes the "Iggy." from iggy text.
     if !cell.iggy.nil? && cell.iggy.include?("ggy")
