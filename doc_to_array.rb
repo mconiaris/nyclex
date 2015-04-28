@@ -131,7 +131,7 @@ def normalize_object_text(array)
 
     normalize_answer_f(cell)
 
-
+    normalize_correct_answer(cell)
 
     # Removes the "Iggy." from iggy text.
     if !cell.iggy.nil? && cell.iggy.include?("ggy")
