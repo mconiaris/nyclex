@@ -315,7 +315,7 @@ def turn_text_into_objects(array)
   end
   persist_objects(question_objects_array)
   question_objects_array
-  binding.pry
+  # binding.pry
 end
 
 
