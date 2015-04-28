@@ -24,7 +24,6 @@ def process_text_file
     questions_array.push(paragraph)
 
   end
-  binding.pry
 end
 
 def normalize_question_text(cell)
@@ -306,8 +305,8 @@ def turn_text_into_objects(array)
     end
   end
   persist_objects(question_objects_array)
-  binding.pry
   question_objects_array
+  binding.pry
 end
 
 
@@ -315,3 +314,6 @@ end
 # Main Program
 process_word_document
 turn_text_into_objects(process_text_file)
+
+# TODO: Make test to confirm that question_objects_array[48].choice_a
+# equals "Scheduling uninterrupted rest periods during the day."
