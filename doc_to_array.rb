@@ -306,14 +306,12 @@ def turn_text_into_objects(array)
     end
   end
   persist_objects(question_objects_array)
-  question_objects_array
   binding.pry
+  question_objects_array
 end
 
 
 
 # Main Program
 process_word_document
-puts "Need to manually add QBREAK to question 48 ans. A"
-binding.pry
 turn_text_into_objects(process_text_file)
