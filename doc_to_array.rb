@@ -145,14 +145,6 @@ def normalize_object_text(array)
 
     normalize_iggy(cell)
 
-    # Removes the "Iggy." from iggy text.
-    if !cell.iggy.nil? && cell.iggy.include?("ggy")
-      cell.iggy =
-        cell.iggy.split(/(Iggy:|.Iggy|Iggy)\s(\w+\.*:?\s*\d+\-?,?\/?\s?\d*)/)[2].strip
-    elsif !cell.iggy.nil?
-      cell.iggy = cell.iggy.strip
-    end
-
     # Removes the "rationale" from rationale text.
     if !cell.rationale.nil? && cell.rationale.include?("Rationale")
       cell.rationale =
