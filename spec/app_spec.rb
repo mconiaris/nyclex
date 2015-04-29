@@ -1,26 +1,17 @@
 require "rspec"
-require_relative "../lib/doc_to_array"
+require_relative "../lib/app"
 
 
-RSpec.describe Question do
-  before(:context) do
-    @question = Question.new({
-      question_text: "Which of the following signs?",
-      choice_a:       "Urine output.",
-      choice_b:       "A clubbing appearance.",
-      choice_c:       "A decreased sensation.",
-      choice_d:       "A decrease in bilateral.",
-      choice_e:       "",
-      choice_f:       "",
-      correct_answer: "D",
-      iggy:           "pg 862",
-      rationale:      "Circulatory system involves.",
-      subject:        "Reduction of risk",
-      category:       "Cardiovascular/circulatory"
-    })
-  end
+RSpec.describe "#process_text_file" do
 
-  it "responds to #question_text" do
-    expect(@question.question_text).to eq("Which of the following signs?")
+  context "using the questions file" do
+    it "returns an array" do
+      expect(process_text_file.class).to eq(Array)
+      # binding.pry
+    end
+
+    it "the returned array size is 54" do
+      expect(process_text_file.size).to eq(54)
+    end
   end
 end
