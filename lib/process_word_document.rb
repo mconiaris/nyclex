@@ -17,6 +17,7 @@ def process_word_document
     puts 'Opened questions_text.txt'
   end
 
+
   # Retrieve and display paragraphs and add to questions_text.txt
   doc.paragraphs.each do |p|
     # Merge paragraphs into questions_text.txt document
