@@ -30,8 +30,28 @@ RSpec.describe "#process_text_file" do
       expect(@text[1]).to include("QBREAK")
     end
 
+    it "array's cell 10 begins with '11.'" do
+      expect(@text[10][0...3]).to eq("11.")
+    end
+
+    it "array's cell 20 begins with '21.'" do
+      expect(@text[20][0...3]).to eq("21.")
+    end
+
     it "array's cell 24 includes 'GASTRO'" do
       expect(@text[24]).to include("GASTRO")
+    end
+
+    it "array's cell 30 begins with 'A c'" do
+      expect(@text[30][0...3]).to eq("A c")
+    end
+
+    it "array's cell 40 begins with '38.'" do
+      expect(@text[40][0...3]).to eq("38.")
+    end
+
+    it "array's cell 50 begins with '48.'" do
+      expect(@text[50][0...3]).to eq("48.")
     end
 
     # binding.pry
