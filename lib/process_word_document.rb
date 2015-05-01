@@ -58,5 +58,6 @@ def process_word_document
       qt_file.print("QBREAK ")
     end
   end
+  # binding.pry
   qt_file.close
 end
