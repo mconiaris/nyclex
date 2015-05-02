@@ -38,15 +38,23 @@ RSpec.describe "ProcessWordDocument" do
         expect(@text.readlines[15][0...3]).to eq("16.")
       end
 
-      it "line 24 begins with text that includes GASTRO" do
+      it "line 24 begins with text that includes 'GASTRO'" do
         expect(@text.readlines[24]).to include("GASTRO")
       end
 
-      it "line 25 begins with text that includes GASTRO" do
-          # binding.pry
+      it "line 25 begins with text that includes 'The'" do
         expect(@text.readlines[25][0...3]).to eq("The")
       end
 
+      it "line 30 begins with text that includes 'A c'" do
+        expect(@text.readlines[30][0...3]).to eq("A c")
+      end
+
+      it "line 35 begins with text that includes 'The'" do
+        expect(@text.readlines[35][0...3]).to eq("The")
+      end
+
+          # binding.pry
     end
   end
 
