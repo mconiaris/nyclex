@@ -13,7 +13,7 @@ RSpec.describe "ProcessWordDocument" do
       expect(@text.class).to eq(File)
     end
 
-    it "questions_text.txt is opened" do
+    it "questions_text.txt can be opened" do
       expect(@text.closed?).to eq(false)
     end
   end
