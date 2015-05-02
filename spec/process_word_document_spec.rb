@@ -22,8 +22,8 @@ RSpec.describe "ProcessWordDocument" do
         expect(@text.closed?).to eq(false)
       end
 
-      it "begins with text that includes CARDIO" do
-        expect(@text.readline).to include("CARDIO")
+      it "line 0 begins with text that includes CARDIO" do
+        expect(@text.readlines[0]).to include("CARDIO")
       end
 
       it "line 5 begins with '4'" do
@@ -36,8 +36,17 @@ RSpec.describe "ProcessWordDocument" do
 
       it "line 15 begins with '16'" do
         expect(@text.readlines[15][0...3]).to eq("16.")
-          binding.pry
       end
+
+      it "line 24 begins with text that includes GASTRO" do
+        expect(@text.readlines[24]).to include("GASTRO")
+      end
+
+      it "line 25 begins with text that includes GASTRO" do
+          # binding.pry
+        expect(@text.readlines[25][0...3]).to eq("The")
+      end
+
     end
   end
 
