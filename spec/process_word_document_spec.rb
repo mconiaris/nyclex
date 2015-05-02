@@ -30,6 +30,11 @@ RSpec.describe "ProcessWordDocument" do
           # binding.pry
         expect(@text.readlines[4][0...2]).to eq("4.")
       end
+
+      it "line 10 begins with '11'" do
+          # binding.pry
+        expect(@text.readlines[10][0...3]).to eq("11.")
+      end
     end
   end
 
