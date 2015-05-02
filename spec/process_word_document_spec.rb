@@ -23,13 +23,21 @@ RSpec.describe "ProcessWordDocument" do
       @text = File.stat('resources/questions_text.txt')
     end
 
-    it "questions_text.txt has been created" do
-      expect(File.exists?("resources/questions_text.txt")).to eq(true)
+    describe "questions_text.txt" do
+      it "has been created" do
+        expect(File.exists?("resources/questions_text.txt")).to eq(true)
+      end
+
+      it "file size is 38844" do
+        expect(@text.size).to eq(38844)
+      end
+
+      it "is readable" do
+        # binding.pry
+        expect(@text.readable?).to eq(true)
+      end
     end
 
-    it "the returned file size is 38844" do
-      expect(@text.size).to eq(38844)
-    end
   end
 end
 
