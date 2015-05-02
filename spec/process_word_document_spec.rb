@@ -9,12 +9,15 @@ RSpec.describe "ProcessWordDocument" do
       @text = File.open('resources/questions_text.txt')
     end
 
-    it "questions_text.txt is a File" do
-      expect(@text.class).to eq(File)
-    end
+    describe "questions_text" do
+      it "questions_text.txt is a File" do
+        expect(@text.class).to eq(File)
+      end
 
-    it "questions_text.txt can be opened" do
-      expect(@text.closed?).to eq(false)
+      it "questions_text.txt can be opened" do
+          # binding.pry
+        expect(@text.closed?).to eq(false)
+      end
     end
   end
 
@@ -33,7 +36,6 @@ RSpec.describe "ProcessWordDocument" do
       end
 
       it "is readable" do
-        # binding.pry
         expect(@text.readable?).to eq(true)
       end
     end
