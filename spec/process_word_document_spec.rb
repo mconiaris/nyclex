@@ -62,6 +62,10 @@ RSpec.describe "ProcessWordDocument" do
         expect(@text.readlines[45][0...3]).to eq("43.")
       end
 
+      it "line 50 begins with text that includes '48.'" do
+        expect(@text.readlines[50][0...3]).to eq("48.")
+      end
+
           # binding.pry
     end
   end
