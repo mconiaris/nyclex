@@ -10,6 +10,10 @@ RSpec.describe "ProcessWordDocument" do
     end
 
     describe "questions_text" do
+      before(:each) do
+        @text.rewind
+      end
+
       it "is a File" do
         expect(@text.class).to eq(File)
       end
@@ -18,10 +22,14 @@ RSpec.describe "ProcessWordDocument" do
         expect(@text.closed?).to eq(false)
       end
 
-      # it "questions_text.txt can be opened" do
-      #   expect(@text.closed?).to eq(false)
-      # end
+      it "begins with text that includes CARDIO" do
+        expect(@text.readline).to include("CARDIO")
+      end
+
+      it "line 5 begins with '4'" do
           # binding.pry
+        expect(@text.readlines[4][0...2]).to eq("4.")
+      end
     end
   end
 
