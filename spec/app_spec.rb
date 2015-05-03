@@ -94,8 +94,12 @@ RSpec.describe "#turn_text_into_objects" do
       expect(@objects_array[0].class).to eq(Question)
     end
     it "cell 1's @question_text beigins with 'When'" do
-      # binding.pry
       expect(@objects_array[1].question_text[0...4]).to eq('When')
     end
+    it "cell 5's @choica_a beigins with 'A drop'" do
+      expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
+    end
+
+      # binding.pry
   end
 end
