@@ -82,3 +82,16 @@ RSpec.describe "#process_text_file" do
 
   end
 end
+
+# Tests that Data from Text Document Turns Into Question Objects
+RSpec.describe "#turn_text_into_objects" do
+  before(:context) do
+    @text_array = process_text_file
+    @objects_array = turn_text_into_objects(@text_array)
+  end
+  context "the container of paragraphs" do
+    it "cell 0 returns a Question Object" do
+      expect(@objects_array[0].class).to eq(Question)
+    end
+  end
+end
