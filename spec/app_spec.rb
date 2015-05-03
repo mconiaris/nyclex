@@ -82,3 +82,26 @@ RSpec.describe "#process_text_file" do
 
   end
 end
+
+# Tests that Data from Text Document Turns Into Question Objects
+RSpec.describe "#turn_text_into_objects" do
+  before(:context) do
+    @text_array = process_text_file
+    @objects_array = turn_text_into_objects(@text_array)
+  end
+  context "the container of paragraphs" do
+    it "cell 0 returns a Question Object" do
+      expect(@objects_array[0].class).to eq(Question)
+    end
+    it "cell 1's @question_text beigins with 'When'" do
+      expect(@objects_array[1].question_text[0...4]).to eq('When')
+    end
+    it "cell 5's @choica_a beigins with 'A drop'" do
+      expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
+    end
+    it "cell 10's @choica_b beigins with 'Inspect'" do
+      expect(@objects_array[10].choice_b[0...7]).to eq('Inspect')
+    end
+      # binding.pry
+  end
+end
