@@ -313,7 +313,7 @@ def turn_text_into_objects(array)
       question_objects_array.push(question_object)
     end
   end
-  persist_objects(question_objects_array)
+  # persist_objects(question_objects_array)
   question_objects_array
 end
 
@@ -321,7 +321,6 @@ end
 
 # Main Program
 process_word_document
-turn_text_into_objects(process_text_file)
-
-# TODO: Make test to confirm that question_objects_array[48].choice_a
-# equals "Scheduling uninterrupted rest periods during the day."
+question_objects_array = turn_text_into_objects(process_text_file)
+# binding.pry
+persist_objects(question_objects_array)

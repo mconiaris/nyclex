@@ -93,35 +93,60 @@ RSpec.describe "#turn_text_into_objects" do
     it "cell 0 returns a Question Object" do
       expect(@objects_array[0].class).to eq(Question)
     end
-    it "cell 1's @question_text beigins with 'When'" do
-      expect(@objects_array[1].question_text[0...4]).to eq('When')
+    it "cell 1's @question_text beigins with '2. W'" do
+      expect(@objects_array[1].question_text[0...4]).to eq('2. W')
     end
-    it "cell 5's @choice_a beigins with 'A drop'" do
-      expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
+    it "cell 5's @choice_a beigins with ' A.A d'" do
+      expect(@objects_array[5].choice_a[0...6]).to eq(' A.A d')
     end
-    it "cell 10's @choice_b beigins with 'Inspect'" do
-      expect(@objects_array[10].choice_b[0...7]).to eq('Inspect')
+    it "cell 10's @choice_b beigins with ' B.Insp'" do
+      expect(@objects_array[10].choice_b[0...7]).to eq(' B.Insp')
     end
-    it "cell 15's @choice_c beigins with '“Report'" do
-      expect(@objects_array[15].choice_c[0...7]).to eq('“Report')
+    it "cell 15's @choice_c beigins with ' C.“Rep'" do
+      expect(@objects_array[15].choice_c[0...7]).to eq(' C.“Rep')
     end
-    it "cell 20's @choice_f beigins with 'Hyper'" do
-      expect(@objects_array[20].choice_f[0...5]).to eq('Hyper')
+    it "cell 20's @choice_f beigins with ' F. H'" do
+      expect(@objects_array[20].choice_f[0...5]).to eq(' F. H')
     end
-    it "cell 25's @choice_d beigins with 'Proth'" do
-      expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
+    it "cell 25's @choice_d beigins with ' D.Pr'" do
+      expect(@objects_array[25].choice_d[0...5]).to eq(' D.Pr')
     end
-    it "cell 30's @correct_answer beigins with 'The'" do
-      expect(@objects_array[30].correct_answer).to eq('D')
+    it "cell 30's @correct_answer beigins with ' ANS: D'" do
+      expect(@objects_array[30].correct_answer).to eq(' ANS: D')
     end
-    it "cell 35's @iggy beigins with 'iggy'" do
-      expect(@objects_array[35].iggy[0...4]).to eq('pg 1')
+    it "cell 35's @iggy beigins with ' Igg'" do
+      expect(@objects_array[35].iggy[0...4]).to eq(' Igg')
     end
-    it "cell 40's @rationale beigins with 'The'" do
-      expect(@objects_array[40].rationale[0...3]).to eq('The')
+    it "cell 40's @rationale beigins with ' Ra'" do
+      expect(@objects_array[40].rationale[0...3]).to eq(' Ra')
     end
     it "cell 45's @choice_e beigins with 'Gatro'" do
       expect(@objects_array[45].category[0...6]).to eq('Gastro')
+    end
+    it "cell 50's @question_text beigins with '50. Th'" do
+      expect(@objects_array[50].question_text[0...6]).to eq('50. Th')
+    end
+    it "cell 51's @question_text beigins with ' A.Sel'" do
+      expect(@objects_array[51].choice_a[0...6]).to eq(' A.Sel')
+    end
+  end
+end
+
+# Tests the normalization of data
+RSpec.describe "#normalize_object_text" do
+  before(:context) do
+    @text_array = process_text_file
+    @objects_array = turn_text_into_objects(@text_array)
+    normalize_object_text(@objects_array)
+  end
+  context "the container" do
+    it "returns a Question Object from cell 0" do
+      expect(@objects_array[0].class).to eq(Question)
+    end
+  end
+  context "#normalize_question_text" do
+    it "cell 1's @question_text beigins with 'When'" do
+      expect(@objects_array[1].question_text[0...4]).to eq('When')
     end
     it "cell 50's @question_text beigins with 'The nu'" do
       expect(@objects_array[50].question_text[0...6]).to eq('The nu')
@@ -129,6 +154,54 @@ RSpec.describe "#turn_text_into_objects" do
     it "cell 51's @question_text beigins with 'Select'" do
       expect(@objects_array[51].choice_a[0...6]).to eq('Select')
     end
-      # binding.pry
+  end
+  context "#normalize_answer_a" do
+    it "cell 5's @choice_a beigins with 'A drop'" do
+      expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
+    end
+  end
+  context "#normalize_answer_b" do
+    it "cell 10's @choice_b beigins with 'Inspect'" do
+      expect(@objects_array[10].choice_b[0...7]).to eq('Inspect')
+    end
+  end
+  context "#normalize_answer_c" do
+    it "cell 15's @choice_c beigins with '“Report'" do
+      expect(@objects_array[15].choice_c[0...7]).to eq('“Report')
+    end
+  end
+  context "#normalize_answer_d" do
+    it "cell 25's @choice_d beigins with 'Proth'" do
+      expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
+    end
+  end
+  context "#normalize_answer_e" do
+    it "cell 45's @choice_e beigins with 'Gatro'" do
+      expect(@objects_array[45].category[0...6]).to eq('Gastro')
+    end
+  end
+  context "#normalize_answer_f" do
+    it "cell 20's @choice_f beigins with 'Hyper'" do
+      expect(@objects_array[20].choice_f[0...5]).to eq('Hyper')
+    end
+  end
+  context "#normalize_correct_answer" do
+    it "cell 30's @correct_answer beigins with 'The'" do
+      expect(@objects_array[30].correct_answer).to eq('D')
+    end
+  end
+  context "#normalize_iggy" do
+    it "cell 35's @iggy beigins with 'iggy'" do
+      expect(@objects_array[35].iggy[0...4]).to eq('pg 1')
+    end
+  end
+  context "normalize_rationale" do
+    it "cell 40's @rationale beigins with 'The'" do
+      expect(@objects_array[40].rationale[0...3]).to eq('The')
+    end
   end
 end
+#
+#
+#   end
+# end
