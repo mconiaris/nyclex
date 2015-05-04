@@ -111,15 +111,17 @@ RSpec.describe "#turn_text_into_objects" do
     it "cell 25's @choice_d beigins with 'Proth'" do
       expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
     end
-    it "cell 30's @choice_d beigins with 'The'" do
-      expect(@objects_array[30].choice_d[0...3]).to eq('The')
+    it "cell 30's @correct_answer beigins with 'The'" do
+      expect(@objects_array[30].correct_answer).to eq('D')
     end
-    it "cell 35's @choice_d beigins with 'Paralytic'" do
-      expect(@objects_array[35].choice_d[0...9]).to eq('Paralytic')
+    it "cell 35's @iggy beigins with 'iggy'" do
+      expect(@objects_array[35].iggy[0...4]).to eq('pg 1')
     end
-
-    it "cell 40's @choice_e beigins with 'Deep'" do
-      expect(@objects_array[40].choice_e[0...4]).to eq('Deep')
+    it "cell 40's @rationale beigins with 'The'" do
+      expect(@objects_array[40].rationale[0...3]).to eq('The')
+    end
+    it "cell 45's @choice_e beigins with 'Gatro'" do
+      expect(@objects_array[45].category[0...6]).to eq('Gastro')
     end
       # binding.pry
   end
