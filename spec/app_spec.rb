@@ -189,14 +189,18 @@ RSpec.describe "#normalize_object_text" do
       expect(@objects_array[30].correct_answer).to eq('D')
     end
   end
+  context "#normalize_iggy" do
+    it "cell 35's @iggy beigins with 'iggy'" do
+      expect(@objects_array[35].iggy[0...4]).to eq('pg 1')
+    end
+  end
+  context "normalize_rationale" do
+    it "cell 40's @rationale beigins with 'The'" do
+      expect(@objects_array[40].rationale[0...3]).to eq('The')
+    end
+  end
 end
 #
-#     it "cell 35's @iggy beigins with 'iggy'" do
-#       expect(@objects_array[35].iggy[0...4]).to eq('pg 1')
-#     end
-#     it "cell 40's @rationale beigins with 'The'" do
-#       expect(@objects_array[40].rationale[0...3]).to eq('The')
-#     end
 #     it "cell 45's @choice_e beigins with 'Gatro'" do
 #       expect(@objects_array[45].category[0...6]).to eq('Gastro')
 #     end
