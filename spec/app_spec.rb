@@ -123,6 +123,12 @@ RSpec.describe "#turn_text_into_objects" do
     it "cell 45's @choice_e beigins with 'Gatro'" do
       expect(@objects_array[45].category[0...6]).to eq('Gastro')
     end
+    it "cell 50's @question_text beigins with 'The nu'" do
+      expect(@objects_array[50].question_text[0...6]).to eq('The nu')
+    end
+    it "cell 51's @question_text beigins with 'Select'" do
+      expect(@objects_array[51].choice_a[0...6]).to eq('Select')
+    end
       # binding.pry
   end
 end
