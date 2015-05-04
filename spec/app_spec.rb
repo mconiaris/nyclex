@@ -175,10 +175,11 @@ RSpec.describe "#normalize_object_text" do
       expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
     end
   end
-  # TODO write test for this
-  # context "#normalize_answer_e" do
-
-  # end
+  context "#normalize_answer_e" do
+    it "cell 45's @choice_e beigins with 'Gatro'" do
+      expect(@objects_array[45].category[0...6]).to eq('Gastro')
+    end
+  end
   context "#normalize_answer_f" do
     it "cell 20's @choice_f beigins with 'Hyper'" do
       expect(@objects_array[20].choice_f[0...5]).to eq('Hyper')
@@ -201,9 +202,6 @@ RSpec.describe "#normalize_object_text" do
   end
 end
 #
-#     it "cell 45's @choice_e beigins with 'Gatro'" do
-#       expect(@objects_array[45].category[0...6]).to eq('Gastro')
-#     end
 #
 #   end
 # end
