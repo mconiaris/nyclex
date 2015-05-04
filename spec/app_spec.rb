@@ -175,14 +175,22 @@ RSpec.describe "#normalize_object_text" do
       expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
     end
   end
+  # TODO write test for this
+  # context "#normalize_answer_e" do
+
+  # end
+  context "#normalize_answer_f" do
+    it "cell 20's @choice_f beigins with 'Hyper'" do
+      expect(@objects_array[20].choice_f[0...5]).to eq('Hyper')
+    end
+  end
+  context "#normalize_correct_answer" do
+    it "cell 30's @correct_answer beigins with 'The'" do
+      expect(@objects_array[30].correct_answer).to eq('D')
+    end
+  end
 end
-#     it "cell 20's @choice_f beigins with 'Hyper'" do
-#       expect(@objects_array[20].choice_f[0...5]).to eq('Hyper')
-#     end
 #
-#     it "cell 30's @correct_answer beigins with 'The'" do
-#       expect(@objects_array[30].correct_answer).to eq('D')
-#     end
 #     it "cell 35's @iggy beigins with 'iggy'" do
 #       expect(@objects_array[35].iggy[0...4]).to eq('pg 1')
 #     end
