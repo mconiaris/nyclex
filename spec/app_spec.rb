@@ -105,9 +105,9 @@ RSpec.describe "#turn_text_into_objects" do
     it "cell 15's @choica_c beigins with '“Report'" do
       expect(@objects_array[15].choice_c[0...7]).to eq('“Report')
     end
-    # it "cell 20's @choica_c beigins with '“Report'" do
-    #   expect(@objects_array[20].choice_c[0...7]).to eq('“Report')
-    # end
+    it "cell 20's @choica_d beigins with 'Diarrhea'" do
+      expect(@objects_array[20].choice_d[0...9]).to eq('Diarrhea')
+    end
       # binding.pry
   end
 end
