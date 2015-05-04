@@ -324,5 +324,3 @@ process_word_document
 question_objects_array = turn_text_into_objects(process_text_file)
 # binding.pry
 persist_objects(question_objects_array)
-# TODO: Make test to confirm that question_objects_array[48].choice_a
-# equals "Scheduling uninterrupted rest periods during the day."
