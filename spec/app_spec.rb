@@ -155,16 +155,22 @@ RSpec.describe "#normalize_object_text" do
       expect(@objects_array[51].choice_a[0...6]).to eq('Select')
     end
   end
+  context "#normalize_answer_a" do
+    it "cell 5's @choice_a beigins with 'A drop'" do
+      expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
+    end
+  end
+  context "#normalize_answer_b" do
+    it "cell 10's @choice_b beigins with 'Inspect'" do
+      expect(@objects_array[10].choice_b[0...7]).to eq('Inspect')
+    end
+  end
 end
 
 
 #
-#     it "cell 5's @choice_a beigins with 'A drop'" do
-#       expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
-#     end
-#     it "cell 10's @choice_b beigins with 'Inspect'" do
-#       expect(@objects_array[10].choice_b[0...7]).to eq('Inspect')
-#     end
+#
+#
 #     it "cell 15's @choice_c beigins with '“Report'" do
 #       expect(@objects_array[15].choice_c[0...7]).to eq('“Report')
 #     end
