@@ -96,17 +96,23 @@ RSpec.describe "#turn_text_into_objects" do
     it "cell 1's @question_text beigins with 'When'" do
       expect(@objects_array[1].question_text[0...4]).to eq('When')
     end
-    it "cell 5's @choica_a beigins with 'A drop'" do
+    it "cell 5's @choice_a beigins with 'A drop'" do
       expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
     end
-    it "cell 10's @choica_b beigins with 'Inspect'" do
+    it "cell 10's @choice_b beigins with 'Inspect'" do
       expect(@objects_array[10].choice_b[0...7]).to eq('Inspect')
     end
-    it "cell 15's @choica_c beigins with '“Report'" do
+    it "cell 15's @choice_c beigins with '“Report'" do
       expect(@objects_array[15].choice_c[0...7]).to eq('“Report')
     end
-    it "cell 20's @choica_d beigins with 'Diarrhea'" do
-      expect(@objects_array[20].choice_d[0...9]).to eq('Diarrhea')
+    it "cell 20's @choice_f beigins with 'Hyper'" do
+      expect(@objects_array[20].choice_f[0...5]).to eq('Hyper')
+    end
+    it "cell 25's @choice_d beigins with 'Proth'" do
+      expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
+    end
+    it "cell 40's @choice_e beigins with 'Deep'" do
+      expect(@objects_array[40].choice_e[0...4]).to eq('Deep')
     end
       # binding.pry
   end
