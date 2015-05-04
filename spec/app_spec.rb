@@ -111,6 +111,10 @@ RSpec.describe "#turn_text_into_objects" do
     it "cell 25's @choice_d beigins with 'Proth'" do
       expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
     end
+    it "cell 30's @choice_d beigins with 'The'" do
+      expect(@objects_array[30].choice_d[0...3]).to eq('The')
+    end
+
     it "cell 40's @choice_e beigins with 'Deep'" do
       expect(@objects_array[40].choice_e[0...4]).to eq('Deep')
     end
