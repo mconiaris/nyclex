@@ -11,12 +11,10 @@ RSpec.describe "#process_text_file", :text_to_array do
   context "the questions file creates an object that" do
     it "responds to the #each method" do
       expect(@text).to respond_to(:each)
-      # binding.pry
     end
 
     it "responds to the #size method" do
       expect(@text).to respond_to(:size)
-      # binding.pry
     end
 
     it "has a returned size of 54" do
@@ -151,6 +149,30 @@ RSpec.describe "#normalize_object_text", :normalize do
   context "#normalize_question_text" do
     it "cell 1's @question_text beigins with 'When'" do
       expect(@objects_array[1].question_text[0...4]).to eq('When')
+    end
+    it "cell 10's @question_text beigins with 'The'" do
+      expect(@objects_array[10].question_text[0...3]).to eq('The')
+    end
+    it "cell 15's @question_text beigins with 'The'" do
+      expect(@objects_array[15].question_text[0...3]).to eq('The')
+    end
+    it "cell 20's @question_text beigins with 'A m'" do
+      expect(@objects_array[20].question_text[0...3]).to eq('A m')
+    end
+    it "cell 25's @question_text beigins with 'Which'" do
+      expect(@objects_array[25].question_text[0...5]).to eq('Which')
+    end
+    it "cell 30's @question_text beigins with 'The n'" do
+      expect(@objects_array[30].question_text[0...5]).to eq('The n')
+    end
+    it "cell 35's @question_text beigins with 'The n'" do
+      expect(@objects_array[35].question_text[0...5]).to eq('The n')
+    end
+    it "cell 40's @question_text beigins with 'The n'" do
+      expect(@objects_array[40].question_text[0...5]).to eq('The n')
+    end
+    it "cell 45's @question_text beigins with 'The n'" do
+      expect(@objects_array[45].question_text[0...5]).to eq('The n')
     end
     it "cell 50's @question_text beigins with 'The nu'" do
       expect(@objects_array[50].question_text[0...6]).to eq('The nu')
