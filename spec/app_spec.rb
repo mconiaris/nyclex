@@ -2,7 +2,7 @@ require "rspec"
 require_relative "../lib/app"
 
 
-RSpec.describe "#process_text_file" do
+RSpec.describe "#process_text_file", :text_to_array do
 
   before(:context) do
     @text = process_text_file
@@ -84,7 +84,7 @@ RSpec.describe "#process_text_file" do
 end
 
 # Tests that Data from Text Document Turns Into Question Objects
-RSpec.describe "#turn_text_into_objects" do
+RSpec.describe "#turn_text_into_objects", :text_to_object do
   before(:context) do
     @text_array = process_text_file
     @objects_array = turn_text_into_objects(@text_array)
@@ -133,7 +133,7 @@ RSpec.describe "#turn_text_into_objects" do
 end
 
 # Tests the normalization of data
-RSpec.describe "#normalize_object_text" do
+RSpec.describe "#normalize_object_text", :normalize do
   before(:context) do
     @text_array = process_text_file
     @objects_array = turn_text_into_objects(@text_array)
@@ -205,7 +205,3 @@ RSpec.describe "#normalize_object_text" do
     end
   end
 end
-#
-#
-#   end
-# end
