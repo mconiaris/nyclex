@@ -419,8 +419,38 @@ RSpec.describe "#normalize_object_text", :normalize do
   end
 
   context "normalize_rationale" do
+    it "cell 3's @rationale begins with 'Nicotine'" do
+      expect(@objects_array[3].rationale[0...8]).to eq('Nicotine')
+    end
+    it "cell 8's @rationale begins with 'pg'" do
+      expect(@objects_array[8].rationale[0...9]).to eq('pg')
+    end
+    it "cell 13's @rationale begins with 'pg:'" do
+      expect(@objects_array[13].rationale[0...9]).to eq('pg:')
+    end
+    it "cell 18's @rationale begins with 'pg 2'" do
+      expect(@objects_array[18].rationale[0...9]).to eq('pg 2')
+    end
+    it "cell 23's @rationale begins with 'pg'" do
+      expect(@objects_array[23].rationale[0...9]).to eq('pg')
+    end
+    it "cell 28's @rationale begins with 'pg 1'" do
+      expect(@objects_array[28].rationale[0...9]).to eq('pg 1')
+    end
+    it "cell 33's @rationale begins with 'pg 1'" do
+      expect(@objects_array[33].rationale[0...9]).to eq('pg 1')
+    end
+    it "cell 38's @rationale begins with 'pg 1'" do
+      expect(@objects_array[38].rationale[0...9]).to eq('pg 1')
+    end
     it "cell 40's @rationale beigins with 'The'" do
-      expect(@objects_array[40].rationale[0...3]).to eq('The')
+      expect(@objects_array[40].rationale[0...9]).to eq('The')
+    end
+    it "cell 43's @rationale begins with 'pg'" do
+      expect(@objects_array[43].rationale[0...9]).to eq('pg')
+    end
+    it "cell 48's @rationale begins with 'pg 1'" do
+      expect(@objects_array[48].rationale[0...9]).to eq('pg 1')
     end
   end
 end
