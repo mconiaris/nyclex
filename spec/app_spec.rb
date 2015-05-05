@@ -182,8 +182,41 @@ RSpec.describe "#normalize_object_text", :normalize do
     end
   end
   context "#normalize_answer_a" do
+    it "cell 0's @choice_a beigins with 'Urine'" do
+      expect(@objects_array[0].choice_a[0...5]).to eq('Urine')
+    end
     it "cell 5's @choice_a beigins with 'A drop'" do
       expect(@objects_array[5].choice_a[0...6]).to eq('A drop')
+    end
+    it "cell 6's @choice_a beigins with '“I’m'" do
+      expect(@objects_array[6].choice_a[0...4]).to eq('“I’m')
+    end
+    it "cell 11's @choice_a beigins with 'Assist'" do
+      expect(@objects_array[11].choice_a[0...6]).to eq('Assist')
+    end
+    it "cell 16's @choice_a beigins with 'Perfor'" do
+      expect(@objects_array[16].choice_a[0...6]).to eq('Perfor')
+    end
+    it "cell 21's @choice_a beigins with 'Begin'" do
+      expect(@objects_array[21].choice_a[0...5]).to eq('Begin')
+    end
+    it "cell 26's @choice_a beigins with 'Upper'" do
+      expect(@objects_array[26].choice_a[0...5]).to eq('Upper')
+    end
+    it "cell 31's @choice_a beigins with '“You'" do
+      expect(@objects_array[31].choice_a[0...4]).to eq('“You')
+    end
+    it "cell 36's @choice_a beigins with '“Ambul'" do
+      expect(@objects_array[36].choice_a[0...6]).to eq('“Ambul')
+    end
+    it "cell 41's @choice_a beigins with 'Discus'" do
+      expect(@objects_array[41].choice_a[0...6]).to eq('Discus')
+    end
+    it "cell 46's @choice_a beigins with 'A c'" do
+      expect(@objects_array[46].choice_a[0...2]).to eq('A c')
+    end
+    it "cell 51's @choice_a beigins with 'Select'" do
+      expect(@objects_array[51].choice_a[0...6]).to eq('Select')
     end
   end
   context "#normalize_answer_b" do
