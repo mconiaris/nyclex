@@ -291,11 +291,43 @@ RSpec.describe "#normalize_object_text", :normalize do
       expect(@objects_array[48].choice_c[0...9]).to eq('Encouragi')
     end
   end
+
   context "#normalize_answer_d" do
+      it "cell 4's @choice_d beigins with 'Atherosc'" do
+      expect(@objects_array[4].choice_d[0...8]).to eq('Atherosc')
+    end
+    it "cell 9's @choice_d beigins with '“I a'" do
+      expect(@objects_array[9].choice_d[0...4]).to eq('“I a')
+    end
+    it "cell 14's @choice_d beigins with 'Stop'" do
+      expect(@objects_array[14].choice_d[0...4]).to eq('Stop')
+    end
+    it "cell 19's @choice_d beigins with '“I have'" do
+      expect(@objects_array[19].choice_d[0...7]).to eq('“I have')
+    end
+    it "cell 24's @choice_d beigins with 'Increased'" do
+      expect(@objects_array[24].choice_d[0...9]).to eq('Increased')
+    end
     it "cell 25's @choice_d beigins with 'Proth'" do
       expect(@objects_array[25].choice_d[0...5]).to eq('Proth')
     end
+    it "cell 29's @choice_d beigins with 'Client'" do
+      expect(@objects_array[29].choice_d[0...6]).to eq('Client')
+    end
+    it "cell 34's @choice_d beigins with 'Irriga'" do
+      expect(@objects_array[34].choice_d[0...6]).to eq('Irriga')
+    end
+    it "cell 39's @choice_d beigins with 'Fluid'" do
+      expect(@objects_array[39].choice_d[0...5]).to eq('Fluid')
+    end
+    it "cell 44's @choice_d beigins with 'A s'" do
+      expect(@objects_array[44].choice_d[0...3]).to eq('A s')
+    end
+    it "cell 49's @choice_d beigins with 'Hepatitis'" do
+      expect(@objects_array[49].choice_d[0...9]).to eq('Hepatitis')
+    end
   end
+
   context "#normalize_answer_e" do
     it "cell 45's @choice_e beigins with 'Gatro'" do
       expect(@objects_array[45].category[0...6]).to eq('Gastro')
