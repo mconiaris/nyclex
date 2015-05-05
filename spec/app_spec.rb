@@ -331,16 +331,18 @@ RSpec.describe "#normalize_object_text", :normalize do
   context "#normalize_answer_e" do
     it "cell 20's @choice_e begins with 'Cardio'" do
       expect(@objects_array[20].category[0...6]).to eq('Cardio')
-    en
+    end
     it "cell 45's @choice_e begins with 'Gatro'" do
       expect(@objects_array[45].category[0...6]).to eq('Gastro')
     end
   end
+
   context "#normalize_answer_f" do
     it "cell 20's @choice_f begins with 'Hyper'" do
       expect(@objects_array[20].choice_f[0...5]).to eq('Hyper')
     end
   end
+
   context "#normalize_correct_answer" do
     it "cell 's @correct_answer equals 'D'" do
       expect(@objects_array[0].correct_answer).to eq('D')
@@ -381,10 +383,41 @@ RSpec.describe "#normalize_object_text", :normalize do
   end
 
   context "#normalize_iggy" do
+    it "cell 2's @iggy begins with 'pp.'" do
+      expect(@objects_array[2].iggy[0...3]).to eq('pp.')
+    end
+    it "cell 7's @iggy begins with 'pg'" do
+      expect(@objects_array[7].iggy[0...2]).to eq('pg')
+    end
+    it "cell 10's @iggy begins with 'pg 2'" do
+      expect(@objects_array[10].iggy[0...4]).to eq('pg 2')
+    end
+    it "cell 12's @iggy begins with 'pg:'" do
+      expect(@objects_array[12].iggy[0...3]).to eq('pg:')
+    end
+    it "cell 22's @iggy begins with 'pg'" do
+      expect(@objects_array[22].iggy[0...2]).to eq('pg')
+    end
+    it "cell 27's @iggy begins with 'pg 1'" do
+      expect(@objects_array[27].iggy[0...4]).to eq('pg 1')
+    end
+    it "cell 32's @iggy begins with 'pg 1'" do
+      expect(@objects_array[32].iggy[0...4]).to eq('pg 1')
+    end
     it "cell 35's @iggy beigins with 'iggy'" do
       expect(@objects_array[35].iggy[0...4]).to eq('pg 1')
     end
+    it "cell 37's @iggy begins with 'pg 1'" do
+      expect(@objects_array[37].iggy[0...4]).to eq('pg 1')
+    end
+    it "cell 42's @iggy begins with 'pg'" do
+      expect(@objects_array[42].iggy[0...2]).to eq('pg')
+    end
+    it "cell 47's @iggy begins with 'pg 1'" do
+      expect(@objects_array[47].iggy[0...4]).to eq('pg 1')
+    end
   end
+
   context "normalize_rationale" do
     it "cell 40's @rationale beigins with 'The'" do
       expect(@objects_array[40].rationale[0...3]).to eq('The')
