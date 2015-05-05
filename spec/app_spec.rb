@@ -255,6 +255,36 @@ RSpec.describe "#normalize_object_text", :normalize do
     it "cell 15's @choice_c beigins with '“Report'" do
       expect(@objects_array[15].choice_c[0...7]).to eq('“Report')
     end
+    it "cell 3's @choice_b beigins with '“Abrupt'" do
+      expect(@objects_array[3].choice_b[0...7]).to eq('“Abrupt')
+    end
+    it "cell 8's @choice_b beigins with '“Your'" do
+      expect(@objects_array[8].choice_b[0...5]).to eq('“Your')
+    end
+    it "cell 18's @choice_b beigins with 'Ask'" do
+      expect(@objects_array[18].choice_b[0...3]).to eq('Ask')
+    end
+    it "cell 13's @choice_b beigins with 'Tachycar'" do
+      expect(@objects_array[13].choice_b[0...8]).to eq('Tachycar')
+    end
+    it "cell 23's @choice_b beigins with 'Docu'" do
+      expect(@objects_array[23].choice_b[0...4]).to eq('Docu')
+    end
+    it "cell 28's @choice_b beigins with 'Orange'" do
+      expect(@objects_array[28].choice_b[0...6]).to eq('Orange')
+    end
+    it "cell 33's @choice_b beigins with '“What'" do
+      expect(@objects_array[33].choice_b[0...5]).to eq('“What')
+    end
+    it "cell 38's @choice_b beigins with 'Trendel'" do
+      expect(@objects_array[38].choice_b[0...7]).to eq('Trendel')
+    end
+    it "cell 43's @choice_b beigins with 'Eryth'" do
+      expect(@objects_array[43].choice_b[0...5]).to eq('Eryth')
+    end
+    it "cell 48's @choice_b beigins with 'Promo'" do
+      expect(@objects_array[48].choice_b[0...5]).to eq('Promo')
+    end
   end
   context "#normalize_answer_d" do
     it "cell 25's @choice_d beigins with 'Proth'" do
