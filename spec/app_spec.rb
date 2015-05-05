@@ -141,7 +141,11 @@ RSpec.describe "#normalize_object_text" do
   end
   context "the container" do
     it "returns a Question Object from cell 0" do
+      # binding.pry
       expect(@objects_array[0].class).to eq(Question)
+    end
+    it "responds to the each method" do
+      expect(@objects_array).to respond_to(:each)
     end
   end
   context "#normalize_question_text" do
