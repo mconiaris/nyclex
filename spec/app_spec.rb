@@ -220,8 +220,35 @@ RSpec.describe "#normalize_object_text", :normalize do
     end
   end
   context "#normalize_answer_b" do
+    it "cell 2's @choice_b beigins with '“Excess'" do
+      expect(@objects_array[2].choice_b[0...7]).to eq('“Excess')
+    end
+    it "cell 7's @choice_b beigins with 'Increase'" do
+      expect(@objects_array[7].choice_b[0...8]).to eq('Increase')
+    end
     it "cell 10's @choice_b beigins with 'Inspect'" do
       expect(@objects_array[10].choice_b[0...7]).to eq('Inspect')
+    end
+    it "cell 12's @choice_b beigins with 'Hypotens'" do
+      expect(@objects_array[12].choice_b[0...8]).to eq('Hypotens')
+    end
+    it "cell 22's @choice_b beigins with '“If my'" do
+      expect(@objects_array[22].choice_b[0...6]).to eq('“If my')
+    end
+    it "cell 27's @choice_b beigins with '“The'" do
+      expect(@objects_array[27].choice_b[0...4]).to eq('“The')
+    end
+    it "cell 32's @choice_b beigins with 'Cholesty'" do
+      expect(@objects_array[32].choice_b[0...8]).to eq('Cholesty')
+    end
+    it "cell 37's @choice_b beigins with 'Rebound'" do
+      expect(@objects_array[37].choice_b[0...7]).to eq('Rebound')
+    end
+    it "cell 42's @choice_b beigins with 'Ham'" do
+      expect(@objects_array[42].choice_b[0...3]).to eq('Ham')
+    end
+    it "cell 47's @choice_b beigins with 'Viral'" do
+      expect(@objects_array[47].choice_b[0...5]).to eq('Viral')
     end
   end
   context "#normalize_answer_c" do
