@@ -137,6 +137,7 @@ RSpec.describe "#normalize_object_text", :normalize do
     @objects_array = turn_text_into_objects(@text_array)
     normalize_object_text(@objects_array)
   end
+
   context "the container" do
     it "returns a Question Object from cell 0" do
       # binding.pry
@@ -146,6 +147,7 @@ RSpec.describe "#normalize_object_text", :normalize do
       expect(@objects_array).to respond_to(:each)
     end
   end
+
   context "#normalize_question_text" do
     it "cell 1's @question_text beigins with 'When'" do
       expect(@objects_array[1].question_text[0...4]).to eq('When')
@@ -181,6 +183,7 @@ RSpec.describe "#normalize_object_text", :normalize do
       expect(@objects_array[51].choice_a[0...6]).to eq('Select')
     end
   end
+
   context "#normalize_answer_a" do
     it "cell 0's @choice_a beigins with 'Urine'" do
       expect(@objects_array[0].choice_a[0...5]).to eq('Urine')
@@ -219,6 +222,7 @@ RSpec.describe "#normalize_object_text", :normalize do
       expect(@objects_array[51].choice_a[0...6]).to eq('Select')
     end
   end
+
   context "#normalize_answer_b" do
     it "cell 2's @choice_b beigins with '“Excess'" do
       expect(@objects_array[2].choice_b[0...7]).to eq('“Excess')
@@ -251,39 +255,40 @@ RSpec.describe "#normalize_object_text", :normalize do
       expect(@objects_array[47].choice_b[0...5]).to eq('Viral')
     end
   end
+
   context "#normalize_answer_c" do
+    it "cell 3's @choice_c beigins with '“Smoking'" do
+      expect(@objects_array[3].choice_c[0...8]).to eq('“Smoking')
+    end
+    it "cell 8's @choice_c beigins with '“You'" do
+      expect(@objects_array[8].choice_c[0...4]).to eq('“You')
+    end
     it "cell 15's @choice_c beigins with '“Report'" do
       expect(@objects_array[15].choice_c[0...7]).to eq('“Report')
     end
-    it "cell 3's @choice_c beigins with '“Abrupt'" do
-      expect(@objects_array[3].choice_c[0...7]).to eq('“Abrupt')
+    it "cell 18's @choice_c beigins with 'Initiate'" do
+      expect(@objects_array[18].choice_c[0...8]).to eq('Initiate')
     end
-    it "cell 8's @choice_c beigins with '“Your'" do
-      expect(@objects_array[8].choice_c[0...5]).to eq('“Your')
+    it "cell 13's @choice_c beigins with 'Increase'" do
+      expect(@objects_array[13].choice_c[0...8]).to eq('Increase')
     end
-    it "cell 18's @choice_c beigins with 'Ask'" do
-      expect(@objects_array[18].choice_c[0...3]).to eq('Ask')
+    it "cell 23's @choice_c beigins with 'Immediate'" do
+      expect(@objects_array[23].choice_c[0...9]).to eq('Immediate')
     end
-    it "cell 13's @choice_c beigins with 'Tachycar'" do
-      expect(@objects_array[13].choice_c[0...8]).to eq('Tachycar')
+    it "cell 28's @choice_c beigins with 'Green'" do
+      expect(@objects_array[28].choice_c[0...5]).to eq('Green')
     end
-    it "cell 23's @choice_c beigins with 'Docu'" do
-      expect(@objects_array[23].choice_c[0...4]).to eq('Docu')
+    it "cell 33's @choice_c beigins with '“These'" do
+      expect(@objects_array[33].choice_c[0...6]).to eq('“These')
     end
-    it "cell 28's @choice_c beigins with 'Orange'" do
-      expect(@objects_array[28].choice_c[0...6]).to eq('Orange')
+    it "cell 38's @choice_c beigins with 'Semi'" do
+      expect(@objects_array[38].choice_c[0...4]).to eq('Semi')
     end
-    it "cell 33's @choice_c beigins with '“What'" do
-      expect(@objects_array[33].choice_c[0...5]).to eq('“What')
+    it "cell 43's @choice_c beigins with 'Red'" do
+      expect(@objects_array[43].choice_c[0...3]).to eq('Red')
     end
-    it "cell 38's @choice_c beigins with 'Trendel'" do
-      expect(@objects_array[38].choice_c[0...7]).to eq('Trendel')
-    end
-    it "cell 43's @choice_c beigins with 'Eryth'" do
-      expect(@objects_array[43].choice_c[0...5]).to eq('Eryth')
-    end
-    it "cell 48's @choice_c beigins with 'Promo'" do
-      expect(@objects_array[48].choice_c[0...5]).to eq('Promo')
+    it "cell 48's @choice_c beigins with 'Encouragi'" do
+      expect(@objects_array[48].choice_c[0...9]).to eq('Encouragi')
     end
   end
   context "#normalize_answer_d" do
