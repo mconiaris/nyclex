@@ -329,6 +329,9 @@ RSpec.describe "#normalize_object_text", :normalize do
   end
 
   context "#normalize_answer_e" do
+    it "cell 20's @choice_e beigins with 'Cardio'" do
+      expect(@objects_array[20].category[0...6]).to eq('Cardio')
+    end
     it "cell 45's @choice_e beigins with 'Gatro'" do
       expect(@objects_array[45].category[0...6]).to eq('Gastro')
     end
