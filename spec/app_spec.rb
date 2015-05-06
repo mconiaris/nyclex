@@ -466,6 +466,9 @@ RSpec.describe "#persist_objects", :persist_objects do
     @file = File.open('resources/jsonquestions.txt')
   end
   context "File data after #persist_objects" do
+    before(:each) do
+      @file.rewind
+    end
     describe "jsonquestions.txt" do
       it "is a file" do
         # binding.pry
@@ -487,7 +490,7 @@ RSpec.describe "#persist_objects", :persist_objects do
         expect(File.exists?("resources/jsonquestions.txt")).to eq(true)
       end
 
-      it "file size is 46814" do
+      it "size is 46814" do
         expect(@file.size).to eq(46814)
       end
 
