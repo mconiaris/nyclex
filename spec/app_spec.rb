@@ -472,12 +472,6 @@ RSpec.describe "#persist_objects", :persist_objects do
     end
     describe "questions.json" do
 
-      # it "is opened" do
-      #   expect(@json_file.closed?).to eq(false)
-      # end
-
-
-
       it "line 0 returns a json object of a Question type" do
         json_text = JSON.parse(@json_file.readlines[0])
         expect(json_text["json_class"]).to include("Question")
