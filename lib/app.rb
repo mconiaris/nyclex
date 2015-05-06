@@ -322,5 +322,5 @@ end
 # Main Program
 process_word_document
 question_objects_array = turn_text_into_objects(process_text_file)
-# binding.pry
+normalize_object_text(question_objects_array)
 persist_objects(question_objects_array)
