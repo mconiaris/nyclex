@@ -164,25 +164,23 @@ end
 def persist_objects(array)
   object_array = array
 
-  # Calls normalize_object_text method
-  # to clean up text and make it uniform
-  normalize_object_text(object_array)
 
-  # Create or open stream to jsonquestions.txt document
-  if File.exist?('resources/jsonquestions.txt') == false
-    q_file = File.new('resources/jsonquestions.txt', 'w+')
-    puts 'Created jsonquestions.txt'
+  # Create or open stream to questions.json document
+  if File.exist?('resources/questions.json') == false
+    q_file = File.new('resources/questions.json', 'w+')
+    puts 'Created questions.json'
   else
-    q_file = File.open('resources/jsonquestions.txt', 'w+')
-    puts 'Opened jsonquestions.txt'
+    q_file = File.open('resources/questions.json', 'w+')
+    puts 'Opened questions.json'
   end
 
   # Add Array Content to Text File
   # in json format
   object_array.each do |cell|
 
-    q_file.puts(cell.to_json)
-
+    text = cell.to_json
+    # Making text JSON twice since puts removes formatting
+    q_file.puts(text)
   end
   # Close documents
   q_file.close
@@ -198,11 +196,11 @@ def test_normalization(array)
 
   # Create or open stream to jsonquestions.txt document
   if File.exist?('resources/jsonquestions.txt') == false
-    q_file = File.new('resources/jsonquestions.txt', 'w+')
+    q_file = File.new('resources/questions.json', 'w+')
     puts 'Created jsonquestions.txt'
   else
-    q_file = File.open('resources/jsonquestions.txt', 'w+')
-    puts 'Opened jsonquestions.txt'
+    q_file = File.open('resources/questions.json', 'w+')
+    puts 'Opened questions.json'
   end
 
   # Add Array Content to Text File
@@ -322,5 +320,5 @@ end
 # Main Program
 process_word_document
 question_objects_array = turn_text_into_objects(process_text_file)
-# binding.pry
+normalize_object_text(question_objects_array)
 persist_objects(question_objects_array)

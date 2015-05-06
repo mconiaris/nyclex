@@ -1,7 +1,7 @@
 require "rspec"
 require_relative "../lib/process_word_document"
 
-RSpec.describe "ProcessWordDocument" do
+RSpec.describe "ProcessWordDocument", :word_to_text do
 
   context "File data after #process_word_document" do
     before(:context) do
