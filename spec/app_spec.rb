@@ -471,6 +471,9 @@ RSpec.describe "#persist_objects", :persist_objects do
         # binding.pry
         expect(@file.class).to eq(File)
       end
+      it "is opened" do
+        expect(@file.closed?).to eq(false)
+      end
     end
   end
 end
