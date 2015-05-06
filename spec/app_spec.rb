@@ -483,12 +483,16 @@ RSpec.describe "#persist_objects", :persist_objects do
         expect(json_text["json_class"]).to include("Question")
       end
 
-      it "line 5 begins with 'A patient'" do
+      it "line 5 question_text begins with 'A patient'" do
         json_text = JSON.parse(@json_file.readlines[5])
         expect(json_text["data"]["question_text"][0...9]).to eq("A patient")
       end
 
-
+      it "line 10 choice_a begins with 'A patient'" do
+        json_text = JSON.parse(@json_file.readlines[10])
+        expect(json_text["data"]["choice_a"][0...8]).to eq("Increase")
+      end
+        # binding.pry
     end
   end
 
