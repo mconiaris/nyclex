@@ -476,4 +476,24 @@ RSpec.describe "#persist_objects", :persist_objects do
       end
     end
   end
+
+  context "Meta Data after #persist_objects" do
+    before(:context) do
+      @file = File.stat('resources/jsonquestions.txt')
+    end
+
+    describe "questions_text.txt" do
+      it "has been created" do
+        expect(File.exists?("resources/jsonquestions.txt")).to eq(true)
+      end
+
+      it "file size is 46814" do
+        expect(@file.size).to eq(46814)
+      end
+
+      it "is readable" do
+        expect(@file.readable?).to eq(true)
+      end
+    end
+  end
 end
