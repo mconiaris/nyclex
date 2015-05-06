@@ -457,15 +457,20 @@ end
 
 
 # Tests that Data from Text Document Turns Into Question Objects
-RSpec.describe "#persist_objects", :text_to_object do
+RSpec.describe "#persist_objects", :persist_objects do
   before(:context) do
     @text_array = process_text_file
     @objects_array = turn_text_into_objects(@text_array)
-    persist_objects(question_objects_array)
+    normalize_object_text(@objects_array)
+    persist_objects(@objects_array)
+    @file = File.open('resources/jsonquestions.txt')
   end
-  context "the container of paragraphs" do
-    it "cell 0 returns a Question Object" do
-      expect(@objects_array[0].class).to eq(Question)
+  context "File data after #persist_objects" do
+    describe "jsonquestions.txt" do
+      it "is a file" do
+        # binding.pry
+        expect(@file.class).to eq(File)
+      end
     end
   end
 end
