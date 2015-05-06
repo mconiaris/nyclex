@@ -485,74 +485,30 @@ RSpec.describe "#persist_objects", :persist_objects do
 
       it "line 5 begins with 'A patient'" do
         json_text = JSON.parse(@json_file.readlines[5])
-        # binding.pry
         expect(json_text["data"]["question_text"][0...9]).to eq("A patient")
       end
 
-      # it "line 10 begins with '11'" do
-      #   expect(@file.readlines[10][0...3]).to eq("11.")
-      # end
 
-      # it "line 15 begins with '16'" do
-      #   expect(@file.readlines[15][0...3]).to eq("16.")
-      # end
-
-      # it "line 24 begins with text that includes 'GASTRO'" do
-      #   expect(@file.readlines[24]).to include("GASTRO")
-      # end
-
-      # it "line 25 begins with text that includes 'The'" do
-      #   expect(@file.readlines[25][0...3]).to eq("The")
-      # end
-
-      # it "line 30 begins with text that includes 'A c'" do
-      #   expect(@file.readlines[30][0...3]).to eq("A c")
-      # end
-
-      # it "line 35 begins with text that includes 'The'" do
-      #   expect(@file.readlines[35][0...3]).to eq("The")
-      # end
-
-      # it "line 40 begins with text that includes '38.'" do
-      #   expect(@file.readlines[40][0...3]).to eq("38.")
-      # end
-
-      # it "line 45 begins with text that includes '43.'" do
-      #   expect(@file.readlines[45][0...3]).to eq("43.")
-      # end
-
-      # it "line 50 begins with text that includes '48.'" do
-      #   expect(@file.readlines[50][0...3]).to eq("48.")
-      # end
-
-      # it "line 53 begins with text that includes '51.'" do
-      #   expect(@file.readlines[53][0...3]).to eq("51.")
-      # end
     end
   end
 
-  # context "Meta Data after #persist_objects" do
-  #   before(:context) do
-  #     @file = File.stat('resources/questions.json')
-  #   end
+  context "Meta Data after #persist_objects" do
+    before(:context) do
+      @file = File.stat('resources/questions.json')
+    end
 
-  #   describe "questions_text.txt" do
-  #     it "has been created" do
-  #       expect(File.exists?("resources/questions.json")).to eq(true)
-  #     end
+    describe "questions_text.txt" do
+      it "has been created" do
+        expect(File.exists?("resources/questions.json")).to eq(true)
+      end
 
-  #     it "is a file" do
-  #       # binding.pry
-  #       expect(@file.class).to eq(File)
-  #     end
+      it "size is 46814" do
+        expect(@file.size).to eq(46816)
+      end
 
-  #     it "size is 46814" do
-  #       expect(@file.size).to eq(46814)
-  #     end
-
-  #     it "is readable" do
-  #       expect(@file.readable?).to eq(true)
-  #     end
-  #   end
-  # end
+      it "is readable" do
+        expect(@file.readable?).to eq(true)
+      end
+    end
+  end
 end
