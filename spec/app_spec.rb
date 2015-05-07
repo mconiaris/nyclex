@@ -472,12 +472,6 @@ RSpec.describe "#persist_objects", :persist_objects do
     end
     describe "questions.json" do
 
-      # it "is opened" do
-      #   expect(@json_file.closed?).to eq(false)
-      # end
-
-
-
       it "line 0 returns a json object of a Question type" do
         json_text = JSON.parse(@json_file.readlines[0])
         expect(json_text["json_class"]).to include("Question")
@@ -488,9 +482,14 @@ RSpec.describe "#persist_objects", :persist_objects do
         expect(json_text["data"]["question_text"][0...9]).to eq("A patient")
       end
 
-      it "line 10 choice_a begins with 'A patient'" do
+      it "line 10 choice_a begins with 'Increase'" do
         json_text = JSON.parse(@json_file.readlines[10])
         expect(json_text["data"]["choice_a"][0...8]).to eq("Increase")
+      end
+
+      it "line 15 choice_a begins with '“Taking'" do
+        json_text = JSON.parse(@json_file.readlines[15])
+        expect(json_text["data"]["choice_a"][0...7]).to eq("“Taking")
       end
         # binding.pry
     end
