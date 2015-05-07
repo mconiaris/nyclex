@@ -516,7 +516,7 @@ RSpec.describe "#persist_objects", :persist_objects do
       @file = File.stat('resources/questions.json')
     end
 
-    describe "questions_text.txt" do
+    describe "questions.json" do
       it "has been created" do
         expect(File.exists?("resources/questions.json")).to eq(true)
       end
