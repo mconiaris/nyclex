@@ -487,25 +487,33 @@ RSpec.describe "#persist_objects", :persist_objects do
         expect(json_text["data"]["choice_a"][0...8]).to eq("Increase")
       end
 
-      it "line 15 choice_a begins with '“Taking'" do
+      it "line 15 choice_b begins with '“Taking'" do
         json_text = JSON.parse(@json_file.readlines[15])
-        expect(json_text["data"]["choice_a"][0...7]).to eq("“Taking")
+        expect(json_text["data"]["choice_b"][0...7]).to eq("“Always")
       end
-      it "line 20 choice_a begins with 'Headache'" do
+      it "line 20 choice_f begins with 'Hyper'" do
         json_text = JSON.parse(@json_file.readlines[20])
-        expect(json_text["data"]["choice_a"][0...8]).to eq("Headache")
+        expect(json_text["data"]["choice_f"][0...5]).to eq("Hyper")
       end
-      it "line 25 choice_a begins with 'Ammonia'" do
+      it "line 25 choice_c begins with 'Hemoglo'" do
         json_text = JSON.parse(@json_file.readlines[25])
-        expect(json_text["data"]["choice_a"][0...7]).to eq("Ammonia")
+        expect(json_text["data"]["choice_c"][0...7]).to eq("Hemoglo")
       end
-      it "line 30 choice_a begins with 'The'" do
+      it "line 30 choice_d begins with 'The'" do
         json_text = JSON.parse(@json_file.readlines[30])
-        expect(json_text["data"]["choice_a"][0...3]).to eq("The")
+        expect(json_text["data"]["choice_d"][0...3]).to eq("The")
       end
-      it "line 35 choice_a begins with 'Dumping'" do
+      it "line 35 correct_answer begins with 'B'" do
         json_text = JSON.parse(@json_file.readlines[35])
-        expect(json_text["data"]["choice_a"][0...7]).to eq("Dumping")
+        expect(json_text["data"]["correct_answer"]).to eq("B")
+      end
+      it "line 40 iggy begins with 'pg'" do
+        json_text = JSON.parse(@json_file.readlines[40])
+        expect(json_text["data"]["iggy"][0...2]).to eq("pg")
+      end
+      it "line 45 choice_e begins with 'pg'" do
+        json_text = JSON.parse(@json_file.readlines[45])
+        expect(json_text["data"]["choice_e"][0...9]).to eq("pg")
       end
         # binding.pry
     end
