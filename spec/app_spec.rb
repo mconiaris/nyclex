@@ -491,6 +491,22 @@ RSpec.describe "#persist_objects", :persist_objects do
         json_text = JSON.parse(@json_file.readlines[15])
         expect(json_text["data"]["choice_a"][0...7]).to eq("“Taking")
       end
+      it "line 20 choice_a begins with 'Headache'" do
+        json_text = JSON.parse(@json_file.readlines[20])
+        expect(json_text["data"]["choice_a"][0...8]).to eq("Headache")
+      end
+      it "line 25 choice_a begins with 'Ammonia'" do
+        json_text = JSON.parse(@json_file.readlines[25])
+        expect(json_text["data"]["choice_a"][0...7]).to eq("Ammonia")
+      end
+      it "line 30 choice_a begins with 'The'" do
+        json_text = JSON.parse(@json_file.readlines[30])
+        expect(json_text["data"]["choice_a"][0...3]).to eq("The")
+      end
+      it "line 35 choice_a begins with 'Dumping'" do
+        json_text = JSON.parse(@json_file.readlines[35])
+        expect(json_text["data"]["choice_a"][0...7]).to eq("Dumping")
+      end
         # binding.pry
     end
   end
