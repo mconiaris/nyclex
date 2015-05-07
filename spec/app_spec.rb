@@ -516,7 +516,6 @@ RSpec.describe "#persist_objects", :persist_objects do
         json_text = JSON.parse(@json_file.readlines[50])
         expect(json_text["data"]["rationale"][0...9]).to eq("Hepatitis")
       end
-        # binding.pry
     end
   end
 
