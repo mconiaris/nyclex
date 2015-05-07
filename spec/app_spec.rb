@@ -330,11 +330,8 @@ RSpec.describe "#normalize_object_text", :normalize do
   end
 
   context "#normalize_answer_e" do
-    it "cell 20's @choice_e begins with 'Cardio'" do
-      expect(@objects_array[20].category[0...6]).to eq('Cardio')
-    end
-    it "cell 45's @choice_e begins with 'Gatro'" do
-      expect(@objects_array[45].category[0...6]).to eq('Gastro')
+    it "cell 20's @choice_e begins with 'Fatigue'" do
+      expect(@objects_array[20].choice_e[0...7]).to eq('Fatigue')
     end
   end
 
@@ -423,35 +420,35 @@ RSpec.describe "#normalize_object_text", :normalize do
     it "cell 3's @rationale begins with 'Nicotine'" do
       expect(@objects_array[3].rationale[0...8]).to eq('Nicotine')
     end
-    it "cell 8's @rationale begins with 'pg'" do
-      expect(@objects_array[8].rationale[0...9]).to eq('pg')
+    it "cell 8's @rationale begins with 'There'" do
+      expect(@objects_array[8].rationale[0...5]).to eq('There')
     end
-    it "cell 13's @rationale begins with 'pg:'" do
-      expect(@objects_array[13].rationale[0...9]).to eq('pg:')
+    it "cell 13's @rationale begins with 'Dopamine'" do
+      expect(@objects_array[13].rationale[0...8]).to eq('Dopamine')
     end
-    it "cell 18's @rationale begins with 'pg 2'" do
-      expect(@objects_array[18].rationale[0...9]).to eq('pg 2')
+    it "cell 18's @rationale begins with 'A cardiac'" do
+      expect(@objects_array[18].rationale[0...9]).to eq('A cardiac')
     end
-    it "cell 23's @rationale begins with 'pg'" do
-      expect(@objects_array[23].rationale[0...9]).to eq('pg')
+    it "cell 23's @rationale begins with 'Rebound'" do
+      expect(@objects_array[23].rationale[0...7]).to eq('Rebound')
     end
-    it "cell 28's @rationale begins with 'pg 1'" do
-      expect(@objects_array[28].rationale[0...9]).to eq('pg 1')
+    it "cell 28's @rationale begins with 'Although'" do
+      expect(@objects_array[28].rationale[0...8]).to eq('Although')
     end
-    it "cell 33's @rationale begins with 'pg 1'" do
-      expect(@objects_array[33].rationale[0...9]).to eq('pg 1')
+    it "cell 33's @rationale begins with 'The only'" do
+      expect(@objects_array[33].rationale[0...8]).to eq('The only')
     end
-    it "cell 38's @rationale begins with 'pg 1'" do
-      expect(@objects_array[38].rationale[0...9]).to eq('pg 1')
+    it "cell 38's @rationale begins with 'Semi-fowl'" do
+      expect(@objects_array[38].rationale[0...9]).to eq('Semi-fowl')
     end
     it "cell 40's @rationale beigins with 'The'" do
-      expect(@objects_array[40].rationale[0...9]).to eq('The')
+      expect(@objects_array[40].rationale[0...3]).to eq('The')
     end
-    it "cell 43's @rationale begins with 'pg'" do
-      expect(@objects_array[43].rationale[0...9]).to eq('pg')
+    it "cell 43's @rationale begins with 'Red blood'" do
+      expect(@objects_array[43].rationale[0...9]).to eq('Red blood')
     end
-    it "cell 48's @rationale begins with 'pg 1'" do
-      expect(@objects_array[48].rationale[0...9]).to eq('pg 1')
+    it "cell 48's @rationale begins with 'Rest'" do
+      expect(@objects_array[48].rationale[0...4]).to eq('Rest')
     end
   end
 end
@@ -487,11 +484,38 @@ RSpec.describe "#persist_objects", :persist_objects do
         expect(json_text["data"]["choice_a"][0...8]).to eq("Increase")
       end
 
-      it "line 15 choice_a begins with '“Taking'" do
+      it "line 15 choice_b begins with '“Always'" do
         json_text = JSON.parse(@json_file.readlines[15])
-        expect(json_text["data"]["choice_a"][0...7]).to eq("“Taking")
+        expect(json_text["data"]["choice_b"][0...7]).to eq("“Always")
       end
-        # binding.pry
+      it "line 20 choice_f begins with 'Hyper'" do
+        json_text = JSON.parse(@json_file.readlines[20])
+        expect(json_text["data"]["choice_f"][0...5]).to eq("Hyper")
+      end
+      it "line 25 choice_c begins with 'Hemoglo'" do
+        json_text = JSON.parse(@json_file.readlines[25])
+        expect(json_text["data"]["choice_c"][0...7]).to eq("Hemoglo")
+      end
+      it "line 30 choice_d begins with 'The'" do
+        json_text = JSON.parse(@json_file.readlines[30])
+        expect(json_text["data"]["choice_d"][0...3]).to eq("The")
+      end
+      it "line 35 correct_answer begins with 'B'" do
+        json_text = JSON.parse(@json_file.readlines[35])
+        expect(json_text["data"]["correct_answer"]).to eq("B")
+      end
+      it "line 40 choice_e begins with 'Deep'" do
+        json_text = JSON.parse(@json_file.readlines[40])
+        expect(json_text["data"]["choice_e"][0...4]).to eq("Deep")
+      end
+      it "line 45 iggy begins with 'pg'" do
+        json_text = JSON.parse(@json_file.readlines[45])
+        expect(json_text["data"]["iggy"][0...2]).to eq("pg")
+      end
+      it "line 50 rationale begins with 'Hepatitis'" do
+        json_text = JSON.parse(@json_file.readlines[50])
+        expect(json_text["data"]["rationale"][0...9]).to eq("Hepatitis")
+      end
     end
   end
 
@@ -500,7 +524,7 @@ RSpec.describe "#persist_objects", :persist_objects do
       @file = File.stat('resources/questions.json')
     end
 
-    describe "questions_text.txt" do
+    describe "questions.json" do
       it "has been created" do
         expect(File.exists?("resources/questions.json")).to eq(true)
       end
