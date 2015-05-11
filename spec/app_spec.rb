@@ -14,8 +14,13 @@ RSpec.describe "App", :app do
   describe "ProcessWordDocument" do
     it "returns a readable file" do
       @text_file = File.stat('resources/questions_text.txt')
-      # binding.pry
       expect(@text_file.readable?).to eq(true)
+    end
+  end
+  describe "ProcessTextFile" do
+    it "returns an object that responds to #each" do
+      # binding.pry
+      expect(@text_file_array).to respond_to(:each)
     end
   end
 end
