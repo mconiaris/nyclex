@@ -77,8 +77,8 @@ RSpec.describe "#persist_objects", :persist_objects do
         expect(File.exists?("resources/questions.json")).to eq(true)
       end
 
-      it "size is 46814" do
-        expect(@file.size).to eq(46816)
+      it "size is 46815" do
+        expect(@file.size).to eq(46815)
       end
 
       it "is readable" do
