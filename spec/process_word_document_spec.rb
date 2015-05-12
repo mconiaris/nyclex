@@ -82,8 +82,8 @@ RSpec.describe "ProcessWordDocument", :word_to_text do
         expect(File.exists?("resources/questions_text.txt")).to eq(true)
       end
 
-      it "file size is 38844" do
-        expect(@text.size).to eq(38844)
+      it "file size is 38846" do
+        expect(@text.size).to eq(38846)
       end
 
       it "is readable" do

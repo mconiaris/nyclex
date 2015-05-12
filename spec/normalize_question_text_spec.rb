@@ -4,6 +4,7 @@ require_relative "../lib/app"
 # Tests the normalization of data
 RSpec.describe "#normalize_object_text", :normalize do
   before(:context) do
+    process_word_document
     @text_array = process_text_file
     @objects_array = turn_text_into_objects(@text_array)
     normalize_object_text(@objects_array)
@@ -87,7 +88,7 @@ RSpec.describe "#normalize_object_text", :normalize do
       expect(@objects_array[41].choice_a[0...6]).to eq('Discus')
     end
     it "cell 46's @choice_a bgins with 'A c'" do
-      expect(@objects_array[46].choice_a[0...2]).to eq('A c')
+      expect(@objects_array[46].choice_a[0...4]).to eq('“A c')
     end
     it "cell 51's @choice_a bgins with 'Select'" do
       expect(@objects_array[51].choice_a[0...6]).to eq('Select')
