@@ -35,11 +35,10 @@ def normalize_question_text(cell)
 end
 
 def normalize_answer_a(cell)
-  # binding.pry
   # Removes the "A." from choice_a text.
   if !cell.choice_a.nil? && cell.choice_a[0...3].include?("A.")
     cell.choice_a =
-      cell.choice_a.split(/[A]\.(.+)/)[1].strip
+      cell.choice_a.split(/[A]\.\\?(.+)/)[1].strip
   elsif !cell.choice_a.nil?
     cell.choice_a = cell.choice_a.strip
   end
@@ -128,6 +127,12 @@ def normalize_rationale(cell)
   end
 end
 
+def normalize_errors(array)
+  # Clean up random error for choice_a of Q. 46
+  old_text = array[46].choice_a
+  old_text[0...2] = ""
+end
+
 
 # This message takes out all of the spacing quirks and
 # odd characters that make the document less useful.
@@ -158,6 +163,7 @@ def normalize_object_text(array)
     normalize_rationale(cell)
 
   end
+    normalize_errors(object_array)
 end
 
 # Takes Ruby objects and puts them into text form
